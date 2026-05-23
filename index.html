@@ -470,8 +470,8 @@
     <div class="footer">
         <p>
             <span data-ru="OphthalmoQueez © • Сделано с" data-en="OphthalmoQueez © • Made with">OphthalmoQueez © • Сделано с</span> <span class="heart">♥</span> 
-            <span data-ru="от" data-en="by">от</span> 
-            <a href="docs/about.html" rel="noopener">Х.</a>
+            <span data-ru="от Х." data-en="by Х.">от Х.</span> 
+            <!--<a href="docs/about.html" rel="noopener">Х.</a>-->
         </p>
         <!--to activate when ready to ship the complete-->
         <p style="margin-top:8px;font-size:0.7rem;">
@@ -514,14 +514,14 @@
     </div>
     <div class="footer">
         <p>
-            <span data-ru="OphthalmoQueez • Сделано с" data-en="OphthalmoQueez • Made with">OphthalmoQueez • Сделано с</span> <span class="heart">♥</span> 
-            <span data-ru="от" data-en="by">от</span> 
-            <a href="../about.html" rel="noopener">Я.</a>
+            <span data-ru="OphthalmoQueez © • Сделано с" data-en="OphthalmoQueez © • Made with">OphthalmoQueez © • Сделано с</span> <span class="heart">♥</span> 
+            <span data-ru="от Х." data-en="by Х.">от Х.</span> 
+            <!--<a href="docs/about.html" rel="noopener">Х.</a>-->
         </p>
         <!--to activate when ready to ship the complete-->
-    <!--<p style="margin-top:8px;font-size:0.7rem;">
-            <a href="../legal.html" style="color:var(--text-secondary);text-decoration:underline;">Правовая информация</a>
-        </p> -->
+    <p style="margin-top:8px;font-size:0.7rem;">
+            <a href="docs/legal.html" style="color:var(--text-secondary);text-decoration:underline;">Правовая информация</a>
+        </p> 
     </div>
 </div>
 
@@ -713,16 +713,22 @@
 
 function toggleMenu(btn) {
     const nav = btn.nextElementSibling;
-    nav.classList.toggle('open');
-    nav.classList.toggle('collapsed');
-    // Close when clicking outside
-    document.addEventListener('click', function closeMenu(e) {
-        if (!nav.contains(e.target) && e.target !== btn) {
-            nav.classList.remove('open');
-            nav.classList.add('collapsed');
-            document.removeEventListener('click', closeMenu);
-        }
-    });
+    
+    // Toggle the menu
+    if (nav.classList.contains('open')) {
+        nav.classList.remove('open');
+    } else {
+        nav.classList.add('open');
+        // Close when clicking outside (with a tiny delay to avoid immediate close)
+        setTimeout(() => {
+            document.addEventListener('click', function closeMenu(e) {
+                if (!nav.contains(e.target) && e.target !== btn) {
+                    nav.classList.remove('open');
+                    document.removeEventListener('click', closeMenu);
+                }
+            });
+        }, 10);
+    }
 }
 
 function selectQuizAnswer(sel){const q=quizQuestions[quizIndex];const isCorrect=sel===q.correct;quizHistory[quizIndex]={selected:sel,correct:isCorrect,flagged:!!quizHistory[quizIndex]?.flagged,text:q.text,correctAnswer:q.correct,userAnswer:sel};if(isCorrect){quizScore++;playSound('correct');}else{playSound('wrong');}document.querySelectorAll('#quiz-options .quiz-option').forEach(o=>{o.classList.add('disabled');if(o.textContent===q.correct)o.classList.add('correct');if(o.textContent===sel&&!isCorrect)o.classList.add('wrong');});saveQuizProgress();if(selectedMode==='instant'){document.getElementById('quiz-next-btn').style.display='inline-block';if(document.getElementById('quiz-auto-skip').checked)setTimeout(()=>quizNext(),1200);}else{setTimeout(()=>quizNext(),800);}}
