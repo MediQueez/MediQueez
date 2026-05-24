@@ -36,19 +36,19 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; -webkit-font-smoothing: antialiased; transition: background var(--transition), color var(--transition); }
 
-        /* LOADING SPINNER */
+       
         .quiz-loading-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 100; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 20px; }
         .quiz-loading-overlay.active { display: flex; }
         .spinner { width: 50px; height: 50px; border: 4px solid var(--surface-alt); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
         .loading-text { font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; color: var(--text-secondary); }
 
-        /* SOUND TOGGLE */
+        
         .sound-toggle-btn { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--text-secondary); cursor: pointer; padding: 6px 10px; border-radius: 20px; background: var(--surface-alt); border: none; font-family: 'Inter', sans-serif; transition: all var(--transition); }
         .sound-toggle-btn:hover { background: var(--accent-bg); }
 
        
-        /* ENHANCED DONATION QR */
+       
         .qr-wrapper { background: linear-gradient(135deg,#f8fafc 0%,#e2e8f0 100%); border-radius: var(--radius-lg); padding: 24px; margin: 20px 0; text-align: center; border: 2px dashed var(--accent-light); position: relative; }
         [data-theme="dark"] .qr-wrapper { background: linear-gradient(135deg,#1e293b 0%,#334155 100%); }
         .qr-wrapper-label { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; padding: 4px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; white-space: nowrap; }
@@ -58,7 +58,7 @@
         .copied-tooltip { font-size: 0.75rem; color: var(--correct); margin-top: 4px; opacity: 0; transition: opacity 0.3s; }
         .copied-tooltip.show { opacity: 1; }
 
-        /* ONBOARDING */
+       
         .onboarding-overlay { position: fixed; inset: 0; background: rgba(15,23,42,0.7); backdrop-filter: blur(8px); z-index: 1000; display: flex; align-items: center; justify-content: center; }
         .onboarding-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 40px 36px; max-width: 420px; width: 90%; text-align: center; box-shadow: var(--shadow-lg); animation: slideUp 0.4s ease; }
         @keyframes slideUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
@@ -74,7 +74,7 @@
         .btn-full.secondary { background: transparent; color: var(--text-secondary); margin-top: 8px; font-size: 0.85rem; }
         .btn-full.secondary:hover { color: var(--text); }
 
-        /* MODALS */
+        
         .modal-overlay { position: fixed; inset: 0; background: rgba(15,23,42,0.7); backdrop-filter: blur(4px); z-index: 1500; display: none; align-items: center; justify-content: center; }
         .modal-overlay.active { display: flex; }
         .modal-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px 28px; max-width: 460px; width: 90%; text-align: center; box-shadow: var(--shadow-lg); animation: modalIn 0.3s ease; max-height: 90vh; overflow-y: auto; }
@@ -88,7 +88,7 @@
         .modal-btn.confirm { background: var(--wrong); color: white; }
         .modal-btn.primary-modal { background: var(--accent); color: white; }
 
-        /* TOAST */
+        
         .toast-container { position: fixed; top: 24px; right: 24px; z-index: 2000; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
         .toast { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; min-width: 300px; max-width: 450px; box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 12px; animation: toastSlideIn 0.4s ease; pointer-events: auto; }
         @keyframes toastSlideIn { from{opacity:0;transform:translateX(100px)} to{opacity:1;transform:translateX(0)} }
@@ -99,7 +99,7 @@
         .toast.warning { border-left: 4px solid var(--warning); } .toast.error { border-left: 4px solid var(--wrong); }
         .toast.success { border-left: 4px solid var(--correct); } .toast.info { border-left: 4px solid var(--accent); }
 
-        /* THANK YOU OVERLAY */
+        
         .thank-you-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 9999; display: none; align-items: center; justify-content: center; }
         .thank-you-overlay.active { display: flex !important; }
         .thank-you-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 40px 32px; text-align: center; box-shadow: 0 25px 80px rgba(0,0,0,0.5); max-width: 380px; width: 90%; animation: popIn 0.5s ease; }
@@ -107,7 +107,7 @@
         .thank-you-image { max-width: 200px; max-height: 200px; width: auto; height: auto; margin: 0 auto 20px; display: block; border-radius: 20px; object-fit: contain; border: 3px solid var(--accent-light); }        .thank-you-text { font-family: 'Playfair Display', Georgia, serif; font-size: 1.8rem; font-weight: 700; color: var(--text); margin-top: 12px; }
         .thank-you-subtext { font-size: 0.9rem; color: var(--text-secondary); margin-top: 8px; }
 
-        /* HEADER */
+        
         .header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 14px 0; position: sticky; top: 0; z-index: 50; backdrop-filter: blur(12px); }
         [data-theme="dark"] .header { background: rgba(30,41,59,0.92); }
         .header-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
@@ -172,7 +172,7 @@
         .btn-resume:hover { transform: translateY(-2px); }
         .btn-discard { background: rgba(255,255,255,0.3); color: #1e0b36; padding: 10px 20px; border-radius: 8px; font-weight: 600; border: 1px solid rgba(255,255,255,0.4); cursor: pointer; font-family: 'Inter', sans-serif; }
         
-        /* ANNOUNCEMENT BANNER */
+        
 .announcement-banner {
     background: linear-gradient(135deg, #6366f1, #a78bfa);
     color: white;
@@ -312,7 +312,7 @@
 
 
 
-        /* Hamburger */
+        
 .hamburger-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: var(--text); }
 .hamburger-btn svg { width: 22px; height: 22px; }
 .nav-links.collapsed { display: none; }
@@ -350,13 +350,13 @@
 
     <div class="toast-container" id="toast-container"></div>
 
-    <!-- LOADING OVERLAY -->
+    
     <div class="quiz-loading-overlay" id="quiz-loading">
         <div class="spinner"></div>
         <p class="loading-text" data-ru="Подготовка теста..." data-en="Preparing quiz...">Подготовка теста...</p>
     </div>
 
-    <!-- THANK YOU OVERLAY -->
+    
     <div class="thank-you-overlay" id="thank-you-overlay">
         <div class="thank-you-card">
             <img src="assets/thankyou.gif" alt="Thank You" class="thank-you-image" onerror="this.style.display='none';document.getElementById('thank-fb').style.display='block';">            
@@ -366,7 +366,7 @@
         </div>
     </div>
 
-    <!-- ONBOARDING -->
+    
     <div class="onboarding-overlay" id="onboarding-overlay" style="display:none;">
         <div class="onboarding-card">
             <img src="assets/ophtflavicon.png" alt="MediQueez" style="width:80px;height:80px;margin:0 auto 16px;display:block;border-radius:20px;">            
@@ -379,14 +379,14 @@
         </div>
     </div>
 
-    <!-- QUIT MODAL -->
+   
     <div class="modal-overlay" id="quit-modal"><div class="modal-card">
         <div class="modal-title" data-ru="Выйти из теста?" data-en="Exit Quiz?">Выйти из теста?</div>
         <div class="modal-text" data-ru="Прогресс будет сохранён. Вы сможете продолжить позже." data-en="Progress will be saved. You can continue later.">Прогресс будет сохранён. Вы сможете продолжить позже.</div>
         <div class="modal-buttons"><button class="modal-btn cancel" onclick="closeQuitModal()" data-ru="ОТМЕНА" data-en="CANCEL">ОТМЕНА</button><button class="modal-btn confirm" onclick="confirmQuitQuiz()" data-ru="СОХРАНИТЬ И ВЫЙТИ" data-en="SAVE & EXIT">СОХРАНИТЬ И ВЫЙТИ</button></div>
     </div></div>
 
-    <!-- DONATION MODAL -->
+    
     <div class="modal-overlay" id="donation-modal"><div class="modal-card">
         <div class="modal-title">☕ <span data-ru="Поддержать проект" data-en="Support the Project">Поддержать проект</span></div>
         <div class="modal-text">
@@ -406,7 +406,7 @@
 
     
 
-    <!-- DASHBOARD -->
+    
     <div class="screen active" id="screen-dashboard"><div class="screen-header"><div class="header-inner">
     <a class="logo" onclick="navigateTo('dashboard')"><div class="logo-icon"> <img src="assets/ophtflavicon.png">
     </div>OphthalmoQueez</a>
@@ -434,7 +434,7 @@
             <p id="resume-info"></p>
             <div class="resume-banner-buttons"><button class="btn-resume" onclick="resumeSavedQuiz()">ПРОДОЛЖИТЬ</button><button class="btn-discard" onclick="discardSavedQuiz()">СБРОСИТЬ</button></div>
         </div>
-        <!-- Announcement Banner -->
+        
 <div class="announcement-banner" id="announcement-banner">
     <p id="announcement-text">🎄 С Новым годом, коллеги! Успешной учёбы!</p>
     <button class="announcement-close" onclick="dismissAnnouncement()">✕</button>
@@ -480,7 +480,7 @@
     </div>
 </div>
 
-    <!-- TESTS -->
+
     <div class="screen" id="screen-tests"><div class="screen-header"><div class="header-inner">
     <a class="logo" onclick="navigateTo('dashboard')"><div class="logo-icon"> <img src="assets/ophtflavicon.png">
     </div>OphthalmoQueez</a>
@@ -525,7 +525,7 @@
     </div>
 </div>
 
-    <!-- SEARCH -->
+    
     <div class="screen" id="screen-search"><div class="screen-header"><div class="header-inner">
     <a class="logo" onclick="navigateTo('dashboard')"><div class="logo-icon"> <img src="assets/ophtflavicon.png">
     </div>OphthalmoQueez</a>
@@ -558,7 +558,7 @@
         </div>
     </div></div>
 
-    <!-- BOOKMARKS -->
+    
     <div class="screen" id="screen-bookmarks"><div class="screen-header"><div class="header-inner">
     <a class="logo" onclick="navigateTo('dashboard')"><div class="logo-icon"> <img src="assets/ophtflavicon.png">
     </div>OphthalmoQueez</a>
@@ -582,7 +582,7 @@
     </nav>
 </div></div><div class="main-container"><div class="empty-state"><div class="empty-state-icon">🔖</div><div class="empty-state-title" data-ru="Пока нет закладок" data-en="No bookmarks yet">Пока нет закладок</div></div></div></div>
 
-    <!-- SETUP -->
+    
     <div class="screen" id="screen-setup"><div class="screen-header"><div class="header-inner">
     <a class="logo" onclick="navigateTo('dashboard')"><div class="logo-icon"> <img src="assets/ophtflavicon.png">
     </div>OphthalmoQueez</a>
@@ -625,7 +625,7 @@
         </div>
     </div></div>
 
-    <!-- QUIZ -->
+    
     <div class="screen" id="screen-quiz"><div class="main-container"><div class="setup-container">
         <div class="quiz-top-bar"><button class="quiz-back" onclick="showQuitModal()">←</button><div class="quiz-progress-bg"><div class="quiz-progress-fill" id="quiz-progress-fill" style="width:0%"></div></div><div class="quiz-timer" id="quiz-timer">00:00</div></div>
         <div class="quiz-counter" id="quiz-counter">Вопрос 1 / 10</div>
@@ -646,7 +646,7 @@
 </div>
     </div></div></div>
 
-    <!-- RESULTS -->
+    
     <div class="screen" id="screen-results"><div class="main-container"><div class="setup-container" style="text-align:center;">
         <h2 class="setup-title" data-ru="Результаты теста" data-en="Quiz Results">Результаты теста</h2>
         <div class="result-score-circle" id="result-score-circle">0/0</div>
@@ -659,7 +659,7 @@
     ☕ <span data-ru="Угостить кофе" data-en="Buy me a coffee">Угостить кофе</span></button></div> -->
     </div></div></div>
         <script>
-        // ==================== SOUND SYSTEM ====================
+       
         let soundEnabled = true;
         function toggleSound() {
     soundEnabled = !soundEnabled;
@@ -734,7 +734,6 @@ function toggleMenu(btn) {
 function selectQuizAnswer(sel){const q=quizQuestions[quizIndex];const isCorrect=sel===q.correct;quizHistory[quizIndex]={selected:sel,correct:isCorrect,flagged:!!quizHistory[quizIndex]?.flagged,text:q.text,correctAnswer:q.correct,userAnswer:sel};if(isCorrect){quizScore++;playSound('correct');}else{playSound('wrong');}document.querySelectorAll('#quiz-options .quiz-option').forEach(o=>{o.classList.add('disabled');if(o.textContent===q.correct)o.classList.add('correct');if(o.textContent===sel&&!isCorrect)o.classList.add('wrong');});saveQuizProgress();if(selectedMode==='instant'){document.getElementById('quiz-next-btn').style.display='inline-block';if(document.getElementById('quiz-auto-skip').checked)setTimeout(()=>quizNext(),1200);}else{setTimeout(()=>quizNext(),800);}}
 
 function startWrongAnswersQuiz() {
-    // Collect all wrong answers from quiz history with full question data
     const wrongQuestions = [];
     
     quizStats.history.forEach(quiz => {
@@ -763,7 +762,7 @@ function startWrongAnswersQuiz() {
         return;
     }
     
-    // Shuffle and use all wrong questions
+    // khrb9 les questions
     quizQuestions = wrongQuestions.sort(() => Math.random() - 0.5);
     quizIndex = 0;
     quizScore = 0;
@@ -820,9 +819,9 @@ function dismissFeedbackPrompt() {
     if (modal) modal.remove();
 }
 
-        // ==================== ANNOUNCEMENT SYSTEM ====================
+       
 function showAnnouncement(message, id) {
-    // Check if user already dismissed this specific announcement
+    
     const dismissed = localStorage.getItem('announcement_dismissed_' + id);
     if (dismissed) return;
     
@@ -831,12 +830,12 @@ function showAnnouncement(message, id) {
     text.innerHTML = message;
     banner.classList.add('show');
 
-    // Force scroll to top — Chrome-proof version
+    
 window.scrollTo(0, 0);
 document.documentElement.scrollTop = 0;
 document.body.scrollTop = 0;
 
-// Also run after a tiny delay (Chrome restores scroll position after load)
+
 setTimeout(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
 }, 100);
@@ -845,15 +844,14 @@ setTimeout(() => {
 function dismissAnnouncement() {
     const banner = document.getElementById('announcement-banner');
     banner.classList.remove('show');
-    // Save that user dismissed it
+    
     const currentId = banner.getAttribute('data-id') || 'default';
     localStorage.setItem('announcement_dismissed_' + currentId, 'true');
 }
 
 
-       //skiping buttong in quiz screen
+       
         function quizSkip() {
-    // Mark as skipped (unanswered) in history
     quizHistory[quizIndex] = {
         selected: null,
         correct: false,
@@ -872,7 +870,7 @@ function dismissAnnouncement() {
 }
         
 
-        // ==================== COPY CARD NUMBER ====================
+        
         function copyCardNumber() {
             const cardEl = document.getElementById('card-number-display');
             const tooltip = document.getElementById('copied-tooltip');
@@ -883,17 +881,14 @@ function dismissAnnouncement() {
             }).catch(() => {});
         }
 
-        // ==================== GLOBAL DATA ====================
+        
         let allQuestionsData = { semester1: [], semester2: [], semester3: [], gia: [] };
 
-        // ==================== TOAST ====================
+        
         function showToast(t,m,ty='info'){const c=document.getElementById('toast-container');const ic={warning:'⚠️',error:'❌',success:'✅',info:'ℹ️'};const d=document.createElement('div');d.className=`toast ${ty}`;d.innerHTML=`<span class="toast-icon">${ic[ty]}</span><div class="toast-content"><div class="toast-title">${t}</div>${m?`<div class="toast-message">${m}</div>`:''}</div><button class="toast-close" onclick="this.parentElement.remove()">✕</button>`;c.appendChild(d);setTimeout(()=>{d.classList.add('removing');setTimeout(()=>d.remove(),300);},4000);}
-
-        // ==================== THEME ====================
         function getSystemTheme(){return window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';}
 function applyTheme(t){
     document.documentElement.setAttribute('data-theme',t);
-    // Toggle sun/moon icons
     document.getElementById('theme-icon-sun').style.display = t==='light' ? 'none' : 'block';
     document.getElementById('theme-icon-moon').style.display = t==='light' ? 'block' : 'none';
 }
@@ -906,13 +901,13 @@ function toggleTheme(){
 }
         if(window.matchMedia)window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',e=>{if(!localStorage.getItem('ophthalmoquiz_theme'))applyTheme(e.matches?'dark':'light');});
 
-        // ==================== LANGUAGE ====================
+    
         let currentLanguage=localStorage.getItem('ophthalmoquiz_lang')||'ru';
         const tdict={ru:{greeting_morning:'Доброе утро',greeting_afternoon:'Добрый день',greeting_evening:'Добрый вечер',greeting_night:'Доброй ночи',guest:'Гость',question_label:'Вопрос',of_label:'из',your_answer:'Ваш ответ:',correct_answer:'Правильный ответ:',time_label:'Время:',toast_section_title:'Выберите раздел',toast_section_msg:'Выберите хотя бы один раздел.',toast_count_title:'Некорректное количество',show_results:'Показать результаты',hide_results:'Скрыть результаты',no_weak_areas:'Пройдите несколько тестов',no_weak_desc:'Мы проанализируем ответы.',no_activity:'Пока нет активности',practice_this:'Тренировать',review_mistakes:'Разбор ошибок',search_placeholder:'Введите ключевые слова...',search_no_results:'Ничего не найдено',prepare_quiz:'Подготовка теста...',qr_label:'QR-код для доната',card_prompt:'Или переведите на карту:',card_number:'1234 5678 9012 3456',copied:'Номер скопирован!',streak_ru:'🔥 Ударный режим:',streak_en:'🔥'},en:{greeting_morning:'Good morning',greeting_afternoon:'Good afternoon',greeting_evening:'Good evening',greeting_night:'Good night',guest:'Guest',question_label:'Question',of_label:'of',your_answer:'Your answer:',correct_answer:'Correct answer:',time_label:'Time:',toast_section_title:'Select a section',toast_section_msg:'Please select at least one section.',toast_count_title:'Invalid count',show_results:'Show Results',hide_results:'Hide Results',no_weak_areas:'Complete some quizzes',no_weak_desc:'We\'ll analyze answers.',no_activity:'No activity yet',practice_this:'Practice This',review_mistakes:'Review Mistakes',search_placeholder:'Enter keywords...',search_no_results:'No results found',prepare_quiz:'Preparing quiz...',qr_label:'Donation QR Code',card_prompt:'Or transfer to card:',card_number:'1234 5678 9012 3456',copied:'Copied!',streak_ru:'🔥',streak_en:'🔥 day streak!'}};
         function t(k){return tdict[currentLanguage][k]||k;}
         function setLanguage(lang){currentLanguage=lang;localStorage.setItem('ophthalmoquiz_lang',lang);document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim().toLowerCase()===lang));document.querySelectorAll('[data-ru]').forEach(el=>{if(el.getAttribute('data-'+lang))el.textContent=el.getAttribute('data-'+lang);});updateGreeting();updateSelectAllBtn();updateSetupTitle();updateResultsBtn();const si=document.getElementById('search-input');if(si)si.placeholder=t('search_placeholder');}
 
-        // ==================== MODALS ====================
+      
         function showQuitModal(){document.getElementById('quit-modal').classList.add('active');}
         function closeQuitModal(){document.getElementById('quit-modal').classList.remove('active');}
         function showDonationModal(){document.getElementById('donation-modal').classList.add('active');}
@@ -926,11 +921,10 @@ function toggleTheme(){
             setTimeout(()=>{document.getElementById('thank-you-overlay').classList.remove('active');},2000);
         }
 
-        // ==================== USER ====================
+        
         let userName=localStorage.getItem('ophthalmoquiz_username')||'';
         function getGreeting(){const h=new Date().getHours();if(h<6)return t('greeting_night');if(h<12)return t('greeting_morning');if(h<17)return t('greeting_afternoon');return t('greeting_evening');}
 function updateGreeting(){
-    // First, update the streak count
     const today = new Date().toDateString();
     let streakData = JSON.parse(localStorage.getItem('ophthalmoquiz_streak') || '{"lastDate":"","count":0}');
     if (streakData.lastDate !== today) {
@@ -944,7 +938,7 @@ function updateGreeting(){
         localStorage.setItem('ophthalmoquiz_streak', JSON.stringify(streakData));
     }
     
-    // Then render the greeting
+    
     const greeting = getGreeting();
     const name = userName || t('guest');
     const count = streakData.count || 0;
@@ -965,8 +959,6 @@ document.querySelectorAll('#user-greeting').forEach(el => {
         function saveUserName(){const v=document.getElementById('user-name-input').value.trim();userName=v||'';if(v)localStorage.setItem('ophthalmoquiz_username',v);else localStorage.removeItem('ophthalmoquiz_username');document.getElementById('onboarding-overlay').style.display='none';updateGreeting();}
         function skipOnboarding(){document.getElementById('onboarding-overlay').style.display='none';updateGreeting();}
         function changeUserName(){document.getElementById('onboarding-overlay').style.display='flex';document.getElementById('user-name-input').value=userName;document.getElementById('user-name-input').focus();}
-
-        // ==================== STATS ====================
         let quizStats={totalQuizzes:0,totalQuestions:0,totalCorrect:0,history:[]};
         function loadStats(){const s=localStorage.getItem('ophthalmoquiz_stats');if(s){quizStats=JSON.parse(s);}updateStatsDisplay();}
         function saveStats(){localStorage.setItem('ophthalmoquiz_stats',JSON.stringify(quizStats));updateStatsDisplay();renderDashboardExtras();}
@@ -976,7 +968,7 @@ document.querySelectorAll('#user-greeting').forEach(el => {
     document.getElementById('stat-avg').textContent=quizStats.totalQuestions>0?avg+'%':'--';
     document.getElementById('stat-total').textContent=quizStats.totalQuestions;
     
-    // Update mistakes count on the errors card
+    
     let totalMistakes = 0;
     quizStats.history.forEach(quiz => {
         if (quiz.questions) {
@@ -990,7 +982,7 @@ document.querySelectorAll('#user-greeting').forEach(el => {
     }
 }
 
-        // ==================== SAVE/RESUME PROGRESS ====================
+        
         function saveQuizProgress(){const progress={currentTest:currentSetupTest,quizMode:selectedMode,selectedPartIndices:Array.from(selectedParts),currentSessionQuestions:quizQuestions,currentIndex:quizIndex,score:quizScore,history:quizHistory,secondsElapsed:quizSeconds,totalParts:currentSetupTest==='gia'?10:5};localStorage.setItem('ophthalmoquiz_progress',JSON.stringify(progress));}
         function loadQuizProgress(){const s=localStorage.getItem('ophthalmoquiz_progress');return s?JSON.parse(s):null;}
         function clearQuizProgress(){localStorage.removeItem('ophthalmoquiz_progress');}
@@ -1013,7 +1005,7 @@ document.querySelectorAll('#user-greeting').forEach(el => {
         }
         function discardSavedQuiz(){if(confirm(currentLanguage==='ru'?'Сбросить сохранённый тест?':'Discard saved quiz?')){clearQuizProgress();document.getElementById('resume-banner').style.display='none';}}
 
-        // ==================== WEAK AREAS DETECTION ====================
+       
         const TOPIC_KEYWORDS={"Глаукома":{keywords:["глауком","внутриглазное","ВГД","ганглиозных","антиглауком"],icon:"👁️"},"Сетчатка":{keywords:["сетчатк","ретин","отслойк","макул","витрэктомия"],icon:"🔬"},"Катаракта":{keywords:["катаракт","хрусталик","факоэмульсификаци","ИОЛ"],icon:"💎"},"Детская":{keywords:["дет","врожден","ретинобластома","амблиопи"],icon:"👶"},"Травма":{keywords:["травм","ранен","ожог","инородное"],icon:"🚑"},"Рефракция":{keywords:["рефракци","миопи","гиперметропи","астигматизм"],icon:"🔍"},"Роговица":{keywords:["роговиц","кератит","конъюнктив","птеригиум"],icon:"👀"}};
         function detectTopics(text){const lt=text.toLowerCase();const d=[];for(const[tp,cfg]of Object.entries(TOPIC_KEYWORDS)){for(const kw of cfg.keywords){if(lt.includes(kw.toLowerCase())){d.push(tp);break;}}}return d.length>0?d:["Общая"];}
         function calculateWeakAreas(){
@@ -1035,7 +1027,7 @@ document.querySelectorAll('#user-greeting').forEach(el => {
         }
         function renderDashboardExtras(){renderWeakAreas();renderActivity();}
 
-        // ==================== PRACTICE & REVIEW (WORKING BUTTONS) ====================
+       
         function practiceTopic(topicName){
             const allTests=['semester1','semester2','semester3','gia'];let bestTest='semester2',maxQ=0;
             quizStats.history.forEach(qz=>{if(qz.questions){const tq=qz.questions.filter(q=>detectTopics(q.text).includes(topicName));if(tq.length>maxQ){maxQ=tq.length;bestTest=qz.test;}}});
@@ -1051,7 +1043,7 @@ document.querySelectorAll('#user-greeting').forEach(el => {
             document.body.appendChild(modal);modal.addEventListener('click',function(e){if(e.target===modal)modal.remove();});
         }
 
-        // ==================== SEARCH ====================
+        
         function buildAllQuestionsData(){
             ['semester1','semester2','semester3','gia'].forEach(tt=>{
                 const raw=getData(tt);
@@ -1081,7 +1073,7 @@ document.querySelectorAll('#user-greeting').forEach(el => {
             }).join('');
         }
 
-        // ==================== NAVIGATION ====================
+        
         function navigateTo(name){
             document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
             const tgt=document.getElementById('screen-'+name);if(tgt)tgt.classList.add('active');
@@ -1092,7 +1084,7 @@ document.querySelectorAll('#user-greeting').forEach(el => {
             if(name==='search'){document.getElementById('search-input').value='';document.getElementById('search-results').innerHTML='';document.getElementById('search-input').focus();}
         }
 
-        // ==================== SETUP ====================
+        
         let currentSetupTest='',selectedParts=new Set(),selectedMode='instant';
         function getTestName(tt){const n={semester1:{ru:'1й Семестр',en:'1st Semester'},semester2:{ru:'2й Семестр',en:'2nd Semester'},semester3:{ru:'3й Семестр',en:'3rd Semester'},gia:{ru:'ГИА',en:'GIA'}};return n[tt]?n[tt][currentLanguage]:tt;}
         function updateSetupTitle(){const el=document.getElementById('setup-test-name');if(currentSetupTest)el.textContent=getTestName(currentSetupTest);}
@@ -1103,7 +1095,7 @@ document.querySelectorAll('#user-greeting').forEach(el => {
         function updateMaxQ(){const m=selectedParts.size*100;document.getElementById('setup-max-q').textContent=m;document.getElementById('setup-q-count').max=m;}
         function startQuiz(){const count=parseInt(document.getElementById('setup-q-count').value);const max=selectedParts.size*100;if(selectedParts.size===0){showToast(t('toast_section_title'),t('toast_section_msg'),'warning');return;}if(!count||count<=0||count>max){showToast(t('toast_count_title'),currentLanguage==='ru'?`Введите число от 1 до ${max}.`:`Enter 1-${max}.`,'error');return;}initQuizEngine(count);}
 
-        // ==================== QUIZ ENGINE ====================
+       
         let quizQuestions=[],quizIndex=0,quizScore=0,quizHistory=[],quizTimerInt,quizSeconds=0;
         function getData(tt){switch(tt){case'semester1':return SEMESTER1_DATA;case'semester2':return SEMESTER2_DATA;case'semester3':return SEMESTER3_DATA;case'gia':return GIA_DATA;default:return SEMESTER2_DATA;}}
         function parseQuestions(d){const blocks=d.split(/В\s+\d+\s+/).filter(b=>b.trim());return blocks.map(b=>{const p=b.split(/\n\s*О\s+[АБВГ]\s+/);return{text:p[0].trim(),correct:p[1]?.trim()||'',options:p.slice(1,5).map(o=>o.trim())};});}
@@ -1126,7 +1118,7 @@ document.querySelectorAll('#user-greeting').forEach(el => {
                 startQuizTimer(); renderQuizQuestion(); saveQuizProgress();
             }, 600);
 
-// Teaching mode adjustments
+
 if(selectedMode==='teach'){
     document.getElementById('quiz-skip-btn').style.display='none';
     document.getElementById('quiz-auto-toggle').style.display='none';
@@ -1149,13 +1141,13 @@ if(selectedMode==='teach'){
     q.shuffled.forEach(opt=>{
         const d=document.createElement('div');d.className='quiz-option';d.textContent=opt;
         
-        // TEACHING MODE: Show correct immediately, no clicking needed
+        
         if(selectedMode==='teach'){
             d.classList.add('disabled');
             if(opt===q.correct)d.classList.add('correct');
             d.style.cursor='default';
         }
-        // Normal modes
+        
         else if(ans){
             d.classList.add('disabled');
             if(opt===q.correct)d.classList.add('correct');
@@ -1166,7 +1158,7 @@ if(selectedMode==='teach'){
         opts.appendChild(d);
     });
     
-    // Teaching mode: mark as "seen" in history, always show next button
+    
     if(selectedMode==='teach'){
         quizHistory[quizIndex]={selected:q.correct,correct:true,flagged:!!quizHistory[quizIndex]?.flagged,text:q.text,correctAnswer:q.correct,userAnswer:'(обучение)'};
         document.getElementById('quiz-next-btn').style.display='inline-block';
@@ -1196,7 +1188,7 @@ if(selectedMode==='teach'){
             const sorted=[...quizHistory.map((h,i)=>({...h,q:quizQuestions[i],idx:i}))].sort((a,b)=>a.correct===b.correct?0:a.correct?1:-1);
             sorted.forEach(item=>{const div=document.createElement('div');div.className=`result-review-item ${item.correct?'correct':'wrong'}`;div.innerHTML=`<div class="result-review-q">${t('question_label')} ${item.idx+1} ${item.correct?'✓':'✗'}</div><div>${item.q.text}</div><div class="result-review-answer ${item.correct?'':'user-wrong'}">${t('your_answer')} ${item.selected||'—'}</div>${!item.correct?`<div class="result-review-answer actual">${t('correct_answer')} ${item.q.correct}</div>`:''}`;rl.appendChild(div);});
             updateResultsBtn();
-            // Show feedback prompt once per day after 3+ quizzes
+           
 if (quizStats.totalQuizzes >= 4) {
     const today = new Date().toDateString();
     const lastPrompt = localStorage.getItem('ophthalmoquiz_feedback_prompt_date');
@@ -1213,7 +1205,7 @@ if (quizStats.totalQuizzes >= 4) {
         function toggleResults(){const rl=document.getElementById('result-review-list');resultsVisible=!resultsVisible;rl.style.display=resultsVisible?'block':'none';updateResultsBtn();}
         function updateResultsBtn(){const btn=document.getElementById('show-results-btn');if(btn)btn.innerHTML=resultsVisible?t('hide_results'):t('show_results');}
 
-        // ==================== PWA SERVICE WORKER ====================
+        
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register("data:application/javascript," + encodeURIComponent(`
@@ -1233,7 +1225,7 @@ if (quizStats.totalQuizzes >= 4) {
             });
         }
 
-        // ==================== FIX STRAY TEXT NODES ====================
+       
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 document.body.childNodes.forEach(function(node) {
@@ -1244,7 +1236,7 @@ if (quizStats.totalQuizzes >= 4) {
             }, 500);
         });
 
-        // ==================== INIT ====================
+        
         document.addEventListener('DOMContentLoaded',()=>{
             const savedTheme=localStorage.getItem('ophthalmoquiz_theme');applyTheme(savedTheme||getSystemTheme());
             setLanguage(currentLanguage);loadStats();
@@ -1257,7 +1249,7 @@ if (quizStats.totalQuizzes >= 4) {
             //showAnnouncement('Message in russian <br><span style="font-size:0.8rem;opacity:0.8;">message in english</span>','newyear2026');
         });
 
-        // ==================== QUESTION DATA ====================
+        // les consts lta7t dya les questions
         const SEMESTER1_DATA = `В 001 Placeholder semester 1? О А Answer А О Б Answer Б О В Answer В О Г Answer Г`;
         const SEMESTER2_DATA = `В 	001 	ОБЯЗАТЕЛЬНЫМ ЭТАПОМ ВСЕХ ФИСТУЛИЗИРУЮЩИХ АНТИГЛАУКОМНЫХ ОПЕРАЦИЙ ЯВЛЯЕТСЯ 
 О 	А 	формирование фильтрационной подушки 
