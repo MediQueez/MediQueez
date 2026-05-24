@@ -6,15 +6,11 @@
     <title>Legal — MediQueez</title>
     <link rel="icon" type="image/png" href="../assets/mediflavicon.png">
     
-    <!-- Clean Structural Sans and Functional Monospace for Medical Systems -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
-        /* ==========================================================================
-           1. Core Calibration (Clinical Database / Reference Files)
-           ========================================================================== */
         :root {
             --bg-app: #f8fafc;
             --bg-panel: #ffffff;
@@ -22,7 +18,7 @@
             --text-muted: #64748b;
             --border-clean: #e2e8f0;
             
-            --color-clinical: #2563eb; /* System Blue */
+            --color-clinical: #2563eb;
             
             --font-sans: 'Inter', -apple-system, sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
@@ -61,9 +57,7 @@
             border: 1px solid var(--border-clean);
         }
 
-        /* ==========================================================================
-           2. Station Navigation Header Matrix
-           ========================================================================== */
+      
         .station-header {
             display: flex;
             justify-content: space-between;
@@ -121,9 +115,7 @@
             font-weight: 600;
         }
 
-        /* ==========================================================================
-           3. Core Report Context (Document Panel)
-           ========================================================================== */
+        
         .report-body {
             padding: 48px 32px;
         }
@@ -182,9 +174,6 @@
             text-decoration: none; 
         }
         
-        /* ==========================================================================
-           4. Interface System Footer
-           ========================================================================== */
         .system-footer { 
             font-family: var(--font-mono);
             font-size: 0.75rem; 
@@ -194,9 +183,7 @@
             border-top: 1px solid var(--border-clean);
         }
         
-        /* ==========================================================================
-           5. Responsive Adaptation
-           ========================================================================== */
+       
         @media (max-width: 650px) {
             body { padding: 16px 8px; }
             .station-header { flex-direction: column; align-items: flex-start; gap: 20px; padding: 20px; }
@@ -211,7 +198,7 @@
 
     <div class="system-container">
         
-        <!-- Platform Identification Desk Header -->
+       
         <header class="station-header">
             <a href="javascript:history.back()" class="back-link">
                 [←] <span data-ru="Назад" data-en="Back">Назад</span>
@@ -219,27 +206,27 @@
             
             <div class="station-meta-matrix">
                 <div class="matrix-node">
-                    <span class="label">Localization</span>
+                    <span class="label" data-ru="Язык" data-en="Language">Язык</span>
                     <span class="value">
                         <button class="control-anchor" id="lang-btn-ru" onclick="setLanguage('ru')">RU</button> / 
                         <button class="control-anchor" id="lang-btn-en" onclick="setLanguage('en')">EN</button>
                     </span>
                 </div>
                 <div class="matrix-node">
-                    <span class="label">Configuration</span>
+                    <span class="label" data-ru="Тема" data-en="Theme">Тема</span>
                     <span class="value">
-                        <button class="control-anchor" onclick="toggleTheme()" id="theme-toggle">Invert Display</button>
+                        <button class="control-anchor" onclick="toggleTheme()" id="theme-toggle">Sys</button>
                     </span>
                 </div>
             </div>
         </header>
         
-        <!-- Document Data Context -->
+      
         <main class="report-body">
             
             <div class="report-title-block">
                 <h1 data-ru="Правовая информация" data-en="Legal Notice">Правовая информация</h1>
-                <p class="subtitle" data-ru="REG_REF // Последнее обновление: Май 2026" data-en="REG_REF // Last updated: May 2026">REG_REF // Последнее обновление: Май 2026</p>
+                <p class="subtitle" data-ru="Последнее обновление: Май 2026" data-en="Last updated: May 2026">Последнее обновление: Май 2026</p>
             </div>
             
             <div class="legal-section">
@@ -272,13 +259,13 @@
             </div>
         </main>
         
-        <!-- Professional System Base Footer -->
+        
         <footer class="system-footer">
             <span data-ru="OphthalmoQueez © 2026. Все права защищены // X." data-en="OphthalmoQueez © 2026. All rights reserved // X. ">OphthalmoQueez © 2026. Все права защищены // X.</span> <!--<a href="about.html">Х.</a>-->
         </footer>
     </div>
 
-    <!-- Scripting Engine Logic -->
+
     <script>
         function getSystemTheme(){
             return window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
@@ -286,7 +273,7 @@
         
         function applyTheme(themeState){
             document.documentElement.setAttribute('data-theme', themeState);
-            // Toggle label update based on layout settings
+            
             document.getElementById('theme-toggle').textContent = themeState === 'dark' ? 'Invert Display (Light)' : 'Invert Display (Dark)';
         }
         
@@ -303,7 +290,7 @@
             currentLanguage = lang;
             localStorage.setItem('ophthalmoquiz_lang', lang);
             
-            // Sync anchor display states
+        
             document.getElementById('lang-btn-ru').classList.toggle('active', lang === 'ru');
             document.getElementById('lang-btn-en').classList.toggle('active', lang === 'en');
             
@@ -312,7 +299,7 @@
             });
         }
         
-        // Initializing Station Boot Sequence
+       
         const savedTheme = localStorage.getItem('ophthalmoquiz_theme');
         applyTheme(savedTheme || getSystemTheme());
         setLanguage(currentLanguage);
