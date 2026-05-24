@@ -648,17 +648,24 @@
 
     
     <div class="screen" id="screen-quiz"><div class="main-container"><div class="setup-container">
-        <div class="quiz-top-bar"><button class="quiz-back" onclick="showQuitModal()">←</button><div class="quiz-progress-bg"><div class="quiz-progress-fill" id="quiz-progress-fill" style="width:0%"></div></div><div class="quiz-timer" id="quiz-timer">00:00</div></div>
+<div class="quiz-top-bar">
+    <button class="quiz-back" onclick="showQuitModal()">←</button>
+    <div class="quiz-progress-bg"><div class="quiz-progress-fill" id="quiz-progress-fill" style="width:0%"></div></div>
+    <div class="quiz-timer" id="quiz-timer">00:00</div>
+    <label class="quiz-auto-toggle" id="quiz-auto-toggle" style="margin:0;padding:0;display:flex;align-items:center;gap:4px;">
+        <input type="checkbox" id="quiz-auto-skip">
+        <span data-ru="Авто" data-en="Auto" style="font-size:0.75rem;color:var(--text-secondary);">Авто</span>
+    </label>
+    <button class="sound-toggle-btn" id="sound-toggle-btn" onclick="toggleSound()" style="padding:4px 8px;">
+        <svg id="sound-icon-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
+        <svg id="sound-icon-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+    </button>
+</div>
         <div class="quiz-counter" id="quiz-counter">Вопрос 1 / 10</div>
         <div class="quiz-question-box" id="quiz-question-text"><button class="quiz-flag-btn" id="quiz-flag-btn" onclick="toggleQuizFlag()">🔖</button>Загрузка...</div>
         <div class="quiz-options" id="quiz-options"></div>
         <div class="quiz-bottom-nav" id="quiz-bottom-nav">
     <button class="quiz-nav-btn prev" id="quiz-prev-btn" onclick="quizPrev()">← НАЗАД</button>
-    <button class="sound-toggle-btn" id="sound-toggle-btn" onclick="toggleSound()" style="padding:8px 12px;">
-        <svg id="sound-icon-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
-        <svg id="sound-icon-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-    </button>
-    <label class="quiz-auto-toggle" id="quiz-auto-toggle"><input type="checkbox" id="quiz-auto-skip"> Авто-переход</label>
     <div style="display:flex;gap:8px;" id="quiz-actions">
         <button class="quiz-nav-btn" id="quiz-skip-btn" onclick="quizSkip()" style="background:var(--surface);color:var(--text-secondary);border:1px solid var(--border);" data-ru="Пропустить" data-en="Skip">Пропустить</button>
         <button class="quiz-nav-btn next" id="quiz-next-btn" onclick="quizNext()">ДАЛЕЕ →</button>
@@ -752,8 +759,37 @@ function toggleMenu(btn) {
     }
 }
 
-function selectQuizAnswer(sel){const q=quizQuestions[quizIndex];const isCorrect=sel===q.correct;quizHistory[quizIndex]={selected:sel,correct:isCorrect,flagged:!!quizHistory[quizIndex]?.flagged,text:q.text,correctAnswer:q.correct,userAnswer:sel};if(isCorrect){quizScore++;playSound('correct');}else{playSound('wrong');}document.querySelectorAll('#quiz-options .quiz-option').forEach(o=>{o.classList.add('disabled');if(o.textContent===q.correct)o.classList.add('correct');if(o.textContent===sel&&!isCorrect)o.classList.add('wrong');});saveQuizProgress();if(selectedMode==='instant'){document.getElementById('quiz-next-btn').style.display='inline-block';if(document.getElementById('quiz-auto-skip').checked)setTimeout(()=>quizNext(),1200);}else{setTimeout(()=>quizNext(),800);}}
-
+function selectQuizAnswer(sel){
+    const q=quizQuestions[quizIndex];const isCorrect=sel===q.correct;
+    quizHistory[quizIndex]={selected:sel,correct:isCorrect,flagged:!!quizHistory[quizIndex]?.flagged,text:q.text,correctAnswer:q.correct,userAnswer:sel};
+    if(isCorrect){quizScore++;playSound('correct');}else{playSound('wrong');}
+    document.querySelectorAll('#quiz-options .quiz-option').forEach(o=>{
+    o.classList.add('disabled');
+    if(selectedMode==='exam'){
+        if(o.textContent===sel)o.style.borderColor='var(--accent)';
+        o.style.background='var(--surface)';
+    }
+    else if(selectedMode==='instant'){
+        if(o.textContent===q.correct)o.classList.add('correct');
+        if(o.textContent===sel&&!isCorrect)o.classList.add('wrong');
+    }
+});
+    saveQuizProgress();
+    
+    // Blitz mode
+if(selectedMode==='instant'){
+    document.getElementById('quiz-next-btn').style.display='inline-block';
+    if(document.getElementById('quiz-auto-skip').checked)setTimeout(()=>quizNext(),1200);
+}
+// Exam mode - respects toggle
+else if(selectedMode==='exam'){
+    if(document.getElementById('quiz-auto-skip').checked){
+        setTimeout(()=>quizNext(),800);
+    }else{
+        document.getElementById('quiz-next-btn').style.display='inline-block';
+    }
+}
+}
 function startWrongAnswersQuiz() {
     const wrongQuestions = [];
     
@@ -1161,7 +1197,7 @@ document.querySelectorAll('#user-greeting').forEach(el => {
 
 if(selectedMode==='teach'){
     document.getElementById('quiz-skip-btn').style.display='none';
-    document.getElementById('quiz-auto-toggle').style.display='none';
+    document.getElementById('quiz-auto-toggle').style.display='flex'; // Show toggle
     document.getElementById('quiz-next-btn').style.display='inline-block';
     document.getElementById('quiz-next-btn').style.background='var(--accent)';
     document.getElementById('quiz-next-btn').style.color='white';
@@ -1170,7 +1206,7 @@ if(selectedMode==='teach'){
         }
 
         function startQuizTimer(){clearInterval(quizTimerInt);quizTimerInt=setInterval(()=>{quizSeconds++;document.getElementById('quiz-timer').textContent=`${Math.floor(quizSeconds/60).toString().padStart(2,'0')}:${(quizSeconds%60).toString().padStart(2,'0')}`;if(quizSeconds%10===0)saveQuizProgress();},1000);}
-        function renderQuizQuestion(){
+       function renderQuizQuestion(){
     const q=quizQuestions[quizIndex];const ans=quizHistory[quizIndex];
     document.getElementById('quiz-progress-fill').style.width=(quizIndex/quizQuestions.length*100)+'%';
     document.getElementById('quiz-counter').textContent=`${t('question_label')} ${quizIndex+1} ${t('of_label')} ${quizQuestions.length}`;
@@ -1181,38 +1217,39 @@ if(selectedMode==='teach'){
     q.shuffled.forEach(opt=>{
         const d=document.createElement('div');d.className='quiz-option';d.textContent=opt;
         
-        
+        // TEACHING MODE: Show correct immediately
         if(selectedMode==='teach'){
-    quizHistory[quizIndex]={selected:q.correct,correct:true,flagged:!!quizHistory[quizIndex]?.flagged,text:q.text,correctAnswer:q.correct,userAnswer:'(обучение)'};
-    document.getElementById('quiz-next-btn').style.display='inline-block';
-    document.getElementById('quiz-next-btn').style.background='var(--accent)';
-    document.getElementById('quiz-next-btn').style.color='white';
-    document.getElementById('quiz-next-btn').style.border='none';
-}
-        
+            d.classList.add('disabled');
+            if(opt===q.correct)d.classList.add('correct');
+            d.style.cursor='default';
+        }
+        // Normal modes - already answered
         else if(ans){
             d.classList.add('disabled');
             if(opt===q.correct)d.classList.add('correct');
             if(opt===ans.selected&&!ans.correct)d.classList.add('wrong');
-        }else{
+        }
+        // Normal modes - not answered yet
+        else{
             d.onclick=()=>selectQuizAnswer(opt);
         }
         opts.appendChild(d);
     });
     
-    
+    // Teaching mode: mark as seen, style next button
     if(selectedMode==='teach'){
         quizHistory[quizIndex]={selected:q.correct,correct:true,flagged:!!quizHistory[quizIndex]?.flagged,text:q.text,correctAnswer:q.correct,userAnswer:'(обучение)'};
         document.getElementById('quiz-next-btn').style.display='inline-block';
-        document.getElementById('quiz-next-btn').style.background='var(--surface)';
-        document.getElementById('quiz-next-btn').style.color='var(--text)';
-        document.getElementById('quiz-next-btn').style.border='1px solid var(--border)';
+        document.getElementById('quiz-next-btn').style.background='var(--accent)';
+        document.getElementById('quiz-next-btn').style.color='white';
+        document.getElementById('quiz-next-btn').style.border='none';
     }
     
     document.getElementById('quiz-prev-btn').style.visibility=quizIndex>0?'visible':'hidden';
     if(selectedMode!=='teach')document.getElementById('quiz-next-btn').style.display=ans?'inline-block':'none';
     document.getElementById('quiz-skip-btn').style.display=selectedMode==='teach'?'none':'inline-block';
 }
+
         function quizNext(){if(quizIndex<quizQuestions.length-1){quizIndex++;renderQuizQuestion();saveQuizProgress();}else{finishQuiz();}}
         function quizPrev(){if(quizIndex>0){quizIndex--;renderQuizQuestion();saveQuizProgress();}}
         function toggleQuizFlag(){const h=quizHistory[quizIndex]||{};h.flagged=!h.flagged;quizHistory[quizIndex]=h;document.querySelector('#quiz-question-box .quiz-flag-btn')?.classList.toggle('flagged',h.flagged);saveQuizProgress();}
