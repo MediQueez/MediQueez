@@ -286,8 +286,20 @@
         .quiz-option.correct { border-color: var(--correct); background: var(--correct-bg); }
         .quiz-option.wrong { border-color: var(--wrong); background: var(--wrong-bg); }
         .quiz-option.disabled { pointer-events: none; }
-        .quiz-bottom-nav { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid var(--border); gap: 12px; flex-wrap: wrap; }
-        .quiz-nav-btn { padding: 12px 28px; border-radius: var(--radius); font-weight: 600; font-size: 0.9rem; border: none; cursor: pointer; font-family: 'Inter', sans-serif; }
+.quiz-bottom-nav { 
+    display: flex; justify-content: space-between; align-items: center; 
+    padding-top: 20px; border-top: 1px solid var(--border); gap: 12px; flex-wrap: wrap; 
+}
+.quiz-bottom-nav > * { flex-shrink: 0; }
+
+@media (max-width: 600px) {
+    .quiz-bottom-nav { 
+        flex-direction: row; flex-wrap: wrap; justify-content: center; 
+    }
+    #quiz-prev-btn, #quiz-next-btn, #quiz-skip-btn { 
+        padding: 10px 20px; font-size: 0.82rem; 
+    }
+}        .quiz-nav-btn { padding: 12px 28px; border-radius: var(--radius); font-weight: 600; font-size: 0.9rem; border: none; cursor: pointer; font-family: 'Inter', sans-serif; }
         .quiz-nav-btn.prev { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
         .quiz-nav-btn.next { background: var(--accent); color: white; }
         .quiz-auto-toggle { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--text-secondary); }
@@ -619,8 +631,17 @@
             <div class="section-label" data-ru="Разделы" data-en="Sections">Разделы</div>
             <button class="select-all-btn" id="select-all-btn" onclick="toggleAllParts()">ВЫБРАТЬ ВСЕ РАЗДЕЛЫ</button>
             <div class="parts-grid" id="setup-parts-grid"></div>
-            <div class="section-label"><span data-ru="Выберите количество вопросов (Доступно:" data-en="Select number of questions (Available:">Выберите количество вопросов (Доступно:</span> <span id="setup-max-q">0</span>)</div>
-            <input type="number" class="number-input" id="setup-q-count" value="0" min="1">
+<div class="section-label"><span data-ru="Сколько вопросов возьмём? (Доступно:" data-en="How many questions? (Available:">Сколько вопросов возьмём? (Доступно:</span> <span id="setup-max-q">0</span>)</div>
+
+
+<div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;" id="quick-select-btns">
+    <button onclick="setQuestionCount(10)" style="padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;font-size:0.8rem;font-weight:500;font-family:'Inter',sans-serif;">10</button>
+    <button onclick="setQuestionCount(25)" style="padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;font-size:0.8rem;font-weight:500;font-family:'Inter',sans-serif;">25</button>
+    <button onclick="setQuestionCount(50)" style="padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;font-size:0.8rem;font-weight:500;font-family:'Inter',sans-serif;">50</button>
+    <button onclick="setQuestionCount('all')" style="padding:6px 14px;border-radius:20px;border:1px solid var(--correct);background:var(--correct-bg);color:var(--correct);cursor:pointer;font-size:0.8rem;font-weight:600;font-family:'Inter',sans-serif;" data-ru="Все" data-en="All">Все</button>
+</div>
+
+<input type="number" class="number-input" id="setup-q-count" value="0" min="1" placeholder="Выберите количество...">
             <button class="start-btn" onclick="startQuiz()" data-ru="НАЧАТЬ ТЕСТ" data-en="START QUIZ">НАЧАТЬ ТЕСТ</button>
         </div>
     </div></div>
@@ -849,7 +870,26 @@ function dismissAnnouncement() {
     localStorage.setItem('announcement_dismissed_' + currentId, 'true');
 }
 
+function setQuestionCount(val) {
+    const max = parseInt(document.getElementById('setup-max-q').textContent);
+    if (val === 'all') {
+        document.getElementById('setup-q-count').value = max;
+    } else {
+        document.getElementById('setup-q-count').value = Math.min(val, max);
+    }
+}
 
+
+function updateMaxQ() {
+    const m = selectedParts.size * 100;
+    document.getElementById('setup-max-q').textContent = m;
+    document.getElementById('setup-q-count').max = m;
+    // Auto-fill if empty or if current value exceeds max
+    const input = document.getElementById('setup-q-count');
+    if (!input.value || parseInt(input.value) === 0 || parseInt(input.value) > m) {
+        input.value = m; // Auto-fill with max available
+    }
+}
        
         function quizSkip() {
     quizHistory[quizIndex] = {
@@ -1123,9 +1163,9 @@ if(selectedMode==='teach'){
     document.getElementById('quiz-skip-btn').style.display='none';
     document.getElementById('quiz-auto-toggle').style.display='none';
     document.getElementById('quiz-next-btn').style.display='inline-block';
-    document.getElementById('quiz-next-btn').style.background='var(--surface)';
-    document.getElementById('quiz-next-btn').style.color='var(--text)';
-    document.getElementById('quiz-next-btn').style.border='1px solid var(--border)';
+    document.getElementById('quiz-next-btn').style.background='var(--accent)';
+    document.getElementById('quiz-next-btn').style.color='white';
+    document.getElementById('quiz-next-btn').style.border='none';
 }
         }
 
@@ -1143,10 +1183,12 @@ if(selectedMode==='teach'){
         
         
         if(selectedMode==='teach'){
-            d.classList.add('disabled');
-            if(opt===q.correct)d.classList.add('correct');
-            d.style.cursor='default';
-        }
+    quizHistory[quizIndex]={selected:q.correct,correct:true,flagged:!!quizHistory[quizIndex]?.flagged,text:q.text,correctAnswer:q.correct,userAnswer:'(обучение)'};
+    document.getElementById('quiz-next-btn').style.display='inline-block';
+    document.getElementById('quiz-next-btn').style.background='var(--accent)';
+    document.getElementById('quiz-next-btn').style.color='white';
+    document.getElementById('quiz-next-btn').style.border='none';
+}
         
         else if(ans){
             d.classList.add('disabled');
@@ -1245,8 +1287,8 @@ if (quizStats.totalQuizzes >= 4) {
             else document.getElementById('onboarding-overlay').style.display='none';
             document.getElementById('user-name-input').addEventListener('keydown',e=>{if(e.key==='Enter')saveUserName();});
             updateGreeting();renderDashboardExtras();checkForSavedQuiz();
-            // Here ktb message li bghit of course: bdl message and id everytime, dont forget
-            //showAnnouncement('Message in russian <br><span style="font-size:0.8rem;opacity:0.8;">message in english</span>','newyear2026');
+            // Here ktb message li bghit of course: bdl message and id everytime, dont forget to activate
+            // showAnnouncement('Message in russian <a href="https://t.me/mediqueezbot" target="_blank" rel="noopener">Telegram</a> <br><span style="font-size:0.8rem;opacity:0.8;">message in english</span>','newyear2026');
         });
 
         // les consts lta7t dya les questions
@@ -4561,10 +4603,13 @@ if (quizStats.totalQuizzes >= 4) {
 О 	Б 	противовоспалительную и противоотечную терапии 
 О 	В 	лазеро-, магнитои фотостимуляции 
 О 	Г 	курс иглорефлексотерапии 
+ 
+
 
 `;
         const SEMESTER3_DATA = `В 001 Placeholder semester 3? О А Answer А О Б Answer Б О В Answer В О Г Answer Г`;
         const GIA_DATA = ` 
+ 
 В 	001 	Цель создания «пятого поколения ЭВМ»  - это 
 О 	А 	реализация возможности моделирования человеческого интеллекта 
 О 	Б 	достижение сверхвысокой производительности компьютеров 
@@ -10895,8 +10940,6 @@ if (quizStats.totalQuizzes >= 4) {
 О 	В 	кератита 
 О 	Г 	отслойки сетчатки 
  
- 
-
         `;
     </script>
 </body>
