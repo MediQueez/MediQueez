@@ -377,12 +377,8 @@
             <p class="thank-you-subtext" data-ru="Очень ценим вашу поддержку!" data-en="We really appreciate your support!">Очень ценим вашу поддержку!</p>
         </div>
     </div>
-<!-- balalalalallalala-->
-    <!-- balalalalallalala-->
-	<!-- balalalalallalala-->
-	<!-- balalalalallalala-->
-	<!-- balalalalallalala-->
-	<!-- balalalalallalala-->
+
+    
     <div class="onboarding-overlay" id="onboarding-overlay" style="display:none;">
         <div class="onboarding-card">
             <img src="assets/ophtflavicon.png" alt="MediQueez" style="width:80px;height:80px;margin:0 auto 16px;display:block;border-radius:20px;">            
@@ -780,12 +776,12 @@ function selectQuizAnswer(sel){
 });
     saveQuizProgress();
     
-    
+    // Blitz mode
 if(selectedMode==='instant'){
     document.getElementById('quiz-next-btn').style.display='inline-block';
     if(document.getElementById('quiz-auto-skip').checked)setTimeout(()=>quizNext(),1200);
 }
-
+// Exam mode - respects toggle
 else if(selectedMode==='exam'){
     if(document.getElementById('quiz-auto-skip').checked){
         setTimeout(()=>quizNext(),800);
@@ -799,12 +795,12 @@ function startWrongAnswersQuiz() {
     
     quizStats.history.forEach(quiz => {
         if (quiz.questions && quiz.test) {
-            
+            // Get the full question bank for this test
             const allQ = parseQuestions(getData(quiz.test));
             
             quiz.questions.forEach((q, i) => {
                 if (!q.correct && q.text) {
-                    
+                    // Find the matching question in the full bank
                     const fullQ = allQ.find(fq => fq.text === q.text);
                     if (fullQ) {
                         wrongQuestions.push(fullQ);
@@ -1221,26 +1217,26 @@ if(selectedMode==='teach'){
     q.shuffled.forEach(opt=>{
         const d=document.createElement('div');d.className='quiz-option';d.textContent=opt;
         
-        
+        // TEACHING MODE: Show correct immediately
         if(selectedMode==='teach'){
             d.classList.add('disabled');
             if(opt===q.correct)d.classList.add('correct');
             d.style.cursor='default';
         }
-        
+        // Normal modes - already answered
         else if(ans){
             d.classList.add('disabled');
             if(opt===q.correct)d.classList.add('correct');
             if(opt===ans.selected&&!ans.correct)d.classList.add('wrong');
         }
-       
+        // Normal modes - not answered yet
         else{
             d.onclick=()=>selectQuizAnswer(opt);
         }
         opts.appendChild(d);
     });
     
-    
+    // Teaching mode: mark as seen, style next button
     if(selectedMode==='teach'){
         quizHistory[quizIndex]={selected:q.correct,correct:true,flagged:!!quizHistory[quizIndex]?.flagged,text:q.text,correctAnswer:q.correct,userAnswer:'(обучение)'};
         document.getElementById('quiz-next-btn').style.display='inline-block';
