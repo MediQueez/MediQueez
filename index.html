@@ -776,12 +776,12 @@ function selectQuizAnswer(sel){
 });
     saveQuizProgress();
     
-    // Blitz mode
+    
 if(selectedMode==='instant'){
     document.getElementById('quiz-next-btn').style.display='inline-block';
     if(document.getElementById('quiz-auto-skip').checked)setTimeout(()=>quizNext(),1200);
 }
-// Exam mode - respects toggle
+
 else if(selectedMode==='exam'){
     if(document.getElementById('quiz-auto-skip').checked){
         setTimeout(()=>quizNext(),800);
@@ -795,12 +795,12 @@ function startWrongAnswersQuiz() {
     
     quizStats.history.forEach(quiz => {
         if (quiz.questions && quiz.test) {
-            // Get the full question bank for this test
+            
             const allQ = parseQuestions(getData(quiz.test));
             
             quiz.questions.forEach((q, i) => {
                 if (!q.correct && q.text) {
-                    // Find the matching question in the full bank
+                    
                     const fullQ = allQ.find(fq => fq.text === q.text);
                     if (fullQ) {
                         wrongQuestions.push(fullQ);
@@ -1217,26 +1217,26 @@ if(selectedMode==='teach'){
     q.shuffled.forEach(opt=>{
         const d=document.createElement('div');d.className='quiz-option';d.textContent=opt;
         
-        // TEACHING MODE: Show correct immediately
+        
         if(selectedMode==='teach'){
             d.classList.add('disabled');
             if(opt===q.correct)d.classList.add('correct');
             d.style.cursor='default';
         }
-        // Normal modes - already answered
+        
         else if(ans){
             d.classList.add('disabled');
             if(opt===q.correct)d.classList.add('correct');
             if(opt===ans.selected&&!ans.correct)d.classList.add('wrong');
         }
-        // Normal modes - not answered yet
+       
         else{
             d.onclick=()=>selectQuizAnswer(opt);
         }
         opts.appendChild(d);
     });
     
-    // Teaching mode: mark as seen, style next button
+    
     if(selectedMode==='teach'){
         quizHistory[quizIndex]={selected:q.correct,correct:true,flagged:!!quizHistory[quizIndex]?.flagged,text:q.text,correctAnswer:q.correct,userAnswer:'(обучение)'};
         document.getElementById('quiz-next-btn').style.display='inline-block';
@@ -1325,7 +1325,7 @@ if (quizStats.totalQuizzes >= 4) {
             document.getElementById('user-name-input').addEventListener('keydown',e=>{if(e.key==='Enter')saveUserName();});
             updateGreeting();renderDashboardExtras();checkForSavedQuiz();
             // Here ktb message li bghit of course: bdl message and id everytime, dont forget to activate
-            // showAnnouncement('Message in russian <a href="https://t.me/mediqueezbot" target="_blank" rel="noopener">Telegram</a> <br><span style="font-size:0.8rem;opacity:0.8;">message in english</span>','newyear2026');
+           showAnnouncement('عيد مبارك! نتمنى لكم ولعائلاتكم عيداً سعيداً مليئاً بالسعادة، الصحة، والمستقبل المزدهر. 🐑✨ <br><span style="font-size:0.8rem;opacity:0.8;">Поздравляю с праздником Ураза-байрам! 🐑✨ </span>','newyear2026');
         });
 
         // les consts lta7t dya les questions
