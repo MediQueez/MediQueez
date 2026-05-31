@@ -8,301 +8,303 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-app: #f8fafc;
-            --bg-panel: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --border-clean: #e2e8f0;
+            --stormcloud-ink: #282e3e;
+            --quizlet-violet: #4255ff;
+            --slate-text: #586380;
+            --light-slate: #939bb4;
+            --page-background: #f6f7fb;
+            --pure-white: #ffffff;
+            --ash-border: #d9dde8;
             
-            --color-clinical: #2563eb;
+            --font-primary: 'Inter', ui-sans-serif, system-ui, sans-serif;
             
-            --font-sans: 'Inter', -apple-system, sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --shadow-sm: rgba(40, 46, 62, 0.1) 0px 2px 4px 0px;
+            --shadow-md: rgba(40, 46, 62, 0.1) 0px 4px 16px 0px;
+            --transition: 0.2s ease;
         }
 
         [data-theme="dark"] {
-            --bg-app: #0b0f19;
-            --bg-panel: #111827;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-clean: #1f2937;
-            
-            --color-clinical: #3b82f6;
+            --stormcloud-ink: #f1f5f9;
+            --quizlet-violet: #818cf8;
+            --slate-text: #94a3b8;
+            --light-slate: #64748b;
+            --page-background: #0f172a;
+            --pure-white: #1e293b;
+            --ash-border: #334155;
+            --shadow-sm: rgba(0, 0, 0, 0.3) 0px 2px 4px 0px;
+            --shadow-md: rgba(0, 0, 0, 0.4) 0px 4px 16px 0px;
         }
 
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--page-background);
+            color: var(--stormcloud-ink);
+            min-height: 100vh;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        body { 
-            font-family: var(--font-sans); 
-            background-color: var(--bg-app); 
-            color: var(--text-main); 
-            min-height: 100vh; 
-            line-height: 1.6; 
-            -webkit-font-smoothing: antialiased; 
-            padding: 40px 20px; 
-        }
-        
-        .system-container { 
-            max-width: 800px; 
-            margin: 0 auto; 
-            background-color: var(--bg-panel);
-            border: 1px solid var(--border-clean);
-        }
-
-      
-        .station-header {
+        /* Fixed Top Bar */
+        .top-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 64px;
+            background: var(--pure-white);
+            border-bottom: 1px solid var(--ash-border);
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 24px 32px;
-            border-bottom: 1px solid var(--border-clean);
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
         }
-
-        .back-link { 
-            display: inline-flex; 
-            align-items: center; 
-            font-family: var(--font-mono);
-            color: var(--text-muted); 
-            font-size: 0.8125rem; 
-            text-decoration: none; 
-        }
-        
-        .back-link:hover { 
-            color: var(--color-clinical); 
-        }
-
-        .station-meta-matrix {
+        .top-nav-left {
             display: flex;
-            gap: 32px;
-            font-size: 0.8125rem;
+            align-items: center;
+            gap: 12px;
         }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--slate-text);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+        .back-link:hover { color: var(--quizlet-violet); }
+        .back-link svg { width: 16px; height: 16px; }
 
-        .matrix-node {
+        .nav-controls {
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        .lang-pair {
+            display: flex;
             gap: 2px;
+            background: var(--ash-border);
+            border-radius: var(--radius-sm);
+            padding: 2px;
+        }
+        .lang-opt {
+            padding: 6px 10px;
+            border-radius: 2px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            border: none;
+            cursor: pointer;
+            background: transparent;
+            color: var(--slate-text);
+            transition: all var(--transition);
+        }
+        .lang-opt.active {
+            background: var(--quizlet-violet);
+            color: var(--pure-white);
+        }
+        .theme-dot {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--ash-border);
+            background: var(--pure-white);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--slate-text);
+            transition: all var(--transition);
+        }
+        .theme-dot:hover { border-color: var(--quizlet-violet); color: var(--quizlet-violet); }
+        .theme-dot svg { width: 18px; height: 18px; }
+
+        /* Main Content */
+        .main-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 104px 24px 64px;
         }
 
-        .matrix-node .label {
-            color: var(--text-muted);
-            font-size: 0.6875rem;
-            text-transform: uppercase;
+        /* Legal Document */
+        .legal-doc {
+            background: var(--pure-white);
+            border-radius: var(--radius-md);
+            padding: 48px 40px;
+            box-shadow: var(--shadow-md);
+        }
+        .legal-doc h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--stormcloud-ink);
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+        .legal-doc .update-date {
+            font-size: 0.8rem;
+            color: var(--slate-text);
+            margin-bottom: 36px;
             font-weight: 500;
         }
-
-        .control-anchor {
-            background: none;
-            border: none;
-            color: inherit;
-            cursor: pointer;
-            text-decoration: underline;
-            font-size: inherit;
-            font-family: inherit;
+        .legal-doc .divider {
+            height: 1px;
+            background: var(--ash-border);
+            margin-bottom: 36px;
         }
-        
-        .control-anchor:hover,
-        .control-anchor.active {
-            color: var(--color-clinical);
-            text-decoration: none;
+
+        .legal-section {
+            margin-bottom: 32px;
+        }
+        .legal-section h2 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--quizlet-violet);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .legal-section p {
+            font-size: 0.95rem;
+            color: var(--stormcloud-ink);
+            line-height: 1.7;
+        }
+        .legal-section a {
+            color: var(--quizlet-violet);
+            text-decoration: underline;
             font-weight: 600;
         }
+        .legal-section a:hover { text-decoration: none; }
 
-        
-        .report-body {
-            padding: 48px 32px;
+        /* Footer */
+        .doc-footer {
+            text-align: center;
+            padding-top: 28px;
+            margin-top: 32px;
+            border-top: 1px solid var(--ash-border);
+            font-size: 0.8rem;
+            color: var(--slate-text);
         }
+        .doc-footer a {
+            color: var(--quizlet-violet);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .doc-footer a:hover { text-decoration: underline; }
 
-        .report-title-block {
-            border-bottom: 2px solid var(--text-main);
-            padding-bottom: 24px;
-            margin-bottom: 40px;
-        }
-
-        [data-theme="dark"] .report-title-block {
-            border-bottom-color: var(--border-clean);
-        }
-
-        h1 { 
-            font-size: 1.75rem; 
-            font-weight: 700; 
-            letter-spacing: -0.5px;
-            line-height: 1.2;
-        }
-        
-        .subtitle { 
-            font-family: var(--font-mono);
-            color: var(--text-muted); 
-            font-size: 0.75rem; 
-            margin-top: 6px;
-            text-transform: uppercase;
-        }
-        
-        .legal-section { 
-            margin-bottom: 40px; 
-        }
-        
-        .legal-section h2 { 
-            font-family: var(--font-mono);
-            font-size: 0.875rem; 
-            font-weight: 700; 
-            margin-bottom: 12px; 
-            color: var(--color-clinical); 
-            text-transform: uppercase;
-            letter-spacing: 0.2px;
-        }
-        
-        .legal-section p { 
-            font-size: 0.9375rem; 
-            color: var(--text-main); 
-            text-align: justify;
-        }
-        
-        .legal-section a { 
-            color: var(--color-clinical); 
-            text-decoration: underline;
-        }
-        
-        .legal-section a:hover { 
-            text-decoration: none; 
-        }
-        
-        .system-footer { 
-            font-family: var(--font-mono);
-            font-size: 0.75rem; 
-            color: var(--text-muted); 
-            padding: 24px 32px; 
-            background-color: var(--bg-app);
-            border-top: 1px solid var(--border-clean);
-        }
-        
-       
-        @media (max-width: 650px) {
-            body { padding: 16px 8px; }
-            .station-header { flex-direction: column; align-items: flex-start; gap: 20px; padding: 20px; }
-            .station-meta-matrix { width: 100%; justify-content: space-between; gap: 12px; }
-            .report-body { padding: 32px 20px; }
-            .system-footer { padding: 20px; }
-            h1 { font-size: 1.5rem; }
+        @media (max-width: 700px) {
+            .legal-doc { padding: 28px 20px; }
+            .legal-doc h1 { font-size: 1.4rem; }
+            .top-nav { padding: 0 16px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="system-container">
-        
-       
-        <header class="station-header">
+    <!-- Fixed Top Bar -->
+    <header class="top-nav">
+        <div class="top-nav-left">
             <a href="javascript:history.back()" class="back-link">
-                [←] <span data-ru="Назад" data-en="Back">Назад</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                <span data-ru="Назад" data-en="Back">Назад</span>
             </a>
-            
-            <div class="station-meta-matrix">
-                <div class="matrix-node">
-                    <span class="label" data-ru="Язык" data-en="Language">Язык</span>
-                    <span class="value">
-                        <button class="control-anchor" id="lang-btn-ru" onclick="setLanguage('ru')">RU</button> / 
-                        <button class="control-anchor" id="lang-btn-en" onclick="setLanguage('en')">EN</button>
-                    </span>
-                </div>
-                <div class="matrix-node">
-                    <span class="label" data-ru="Тема" data-en="Theme">Тема</span>
-                    <span class="value">
-                        <button class="control-anchor" onclick="toggleTheme()" id="theme-toggle">Sys</button>
-                    </span>
-                </div>
+        </div>
+        <div class="nav-controls">
+            <div class="lang-pair">
+                <button class="lang-opt active" data-lang="ru" onclick="setLang('ru')">RU</button>
+                <button class="lang-opt" data-lang="en" onclick="setLang('en')">EN</button>
             </div>
-        </header>
-        
-      
-        <main class="report-body">
+            <button class="theme-dot" onclick="toggleTheme()" aria-label="Toggle theme" id="theme-btn">
+                <svg id="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:none;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                <svg id="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="legal-doc">
             
-            <div class="report-title-block">
-                <h1 data-ru="Правовая информация" data-en="Legal Notice">Правовая информация</h1>
-                <p class="subtitle" data-ru="Последнее обновление: Май 2026" data-en="Last updated: May 2026">Последнее обновление: Май 2026</p>
-            </div>
-            
+            <h1 data-ru="Правовая информация" data-en="Legal Notice">Правовая информация</h1>
+            <p class="update-date" data-ru="Последнее обновление: Май 2026" data-en="Last updated: May 2026">Последнее обновление: Май 2026</p>
+            <div class="divider"></div>
+
             <div class="legal-section">
                 <h2 data-ru="1. Цель ресурса" data-en="1. Purpose of the Resource">1. Цель ресурса</h2>
                 <p data-ru="Проект OphthalmoQueez является исключительно образовательным и ознакомительным инструментом, созданным для студентов медицинских вузов и практикующих специалистов." data-en="The OphthalmoQueez project is strictly an educational and informational tool designed for medical students and practicing healthcare professionals.">Проект OphthalmoQueez является исключительно образовательным и ознакомительным инструментом, созданным для студентов медицинских вузов и практикующих специалистов.</p>
             </div>
-            
+
             <div class="legal-section">
                 <h2 data-ru="2. Медицинский дисклеймер" data-en="2. Medical Disclaimer">2. Медицинский дисклеймер</h2>
                 <p data-ru="Материалы сайта не являются источником официальных медицинских консультаций, рекомендаций или клинических диагнозов. Проект не заменяет профессиональное медицинское обследование." data-en="The content on this website does not constitute official medical advice, clinical guidelines, or diagnoses. This project is not a substitute for professional medical evaluation or treatment.">Материалы сайта не являются источником официальных медицинских консультаций, рекомендаций или клинических диагнозов. Проект не заменяет профессиональное медицинское обследование.</p>
             </div>
-            
+
             <div class="legal-section">
                 <h2 data-ru="3. Конфиденциальность данных" data-en="3. Data Privacy">3. Конфиденциальность данных</h2>
                 <p data-ru="Мы не собираем и не храним ваши личные данные на внешних серверах. Вводимое имя пользователя сохраняется исключительно локально на вашем устройстве (в браузере) для персонализации интерфейса." data-en="We do not collect, transmit, or store your personal data on any external servers. Any username entered is stored 100% locally on your own device (browser storage) solely to personalize your experience.">Мы не собираем и не храним ваши личные данные на внешних серверах. Вводимое имя пользователя сохраняется исключительно локально на вашем устройстве (в браузере) для персонализации интерфейса.</p>
             </div>
-            
+
             <div class="legal-section">
                 <h2 data-ru="4. Авторские права" data-en="4. Copyright &amp; Fair Use">4. Авторские права</h2>
                 <p data-ru="Все тестовые материалы и вопросы взяты из открытых публичных источников. Проект является некоммерческим и бесплатным." data-en="All quiz questions and study materials are sourced from public domains and open educational resources. This project is entirely non-commercial and free to use.">Все тестовые материалы и вопросы взяты из открытых публичных источников. Проект является некоммерческим и бесплатным.</p>
             </div>
-            
+
             <div class="legal-section">
                 <h2 data-ru="5. Удаление контента" data-en="5. Take-Down Policy">5. Удаление контента</h2>
                 <p>
                     <span data-ru="Если вы являетесь законным правообладателем какого-либо материала, размещенного здесь, и не хотите, чтобы он находился в открытом доступе, свяжитесь с нами по адресу:" data-en="If you are the legal copyright holder of any material published here and object to its free distribution, please contact us at:">Если вы являетесь законным правообладателем какого-либо материала, размещенного здесь, и не хотите, чтобы он находился в открытом доступе, свяжитесь с нами по адресу:</span>
-                    <a href="mailto:mediqueez@yandex.ru">mediqueez@yandex.ru</a>/<a href="https://t.me/mediqueezbot" target="_blank" rel="noopener">Telegram</a>.
+                    <a href="mailto:mediqueez@yandex.ru">mediqueez@yandex.ru</a> / <a href="https://t.me/mediqueezbot" target="_blank" rel="noopener">Telegram</a>.
                     <span data-ru="Мы незамедлительно удалим данный контент в течение 48 часов." data-en="We act in good faith and will remove the disputed content within 48 hours of verification.">Мы незамедлительно удалим данный контент в течение 48 часов.</span>
                 </p>
             </div>
-        </main>
-        
-        
-        <footer class="system-footer">
-            <span data-ru="OphthalmoQueez © 2026. Все права защищены // X." data-en="OphthalmoQueez © 2026. All rights reserved // X. ">OphthalmoQueez © 2026. Все права защищены // X.</span> <!--<a href="about.html">Х.</a>-->
-        </footer>
-    </div>
 
+            <div class="doc-footer">
+                <span data-ru="OphthalmoQueez © 2026. Все права защищены." data-en="OphthalmoQueez © 2026. All rights reserved.">OphthalmoQueez © 2026. Все права защищены.</span>
+            </div>
+        </div>
+    </main>
 
     <script>
-        function getSystemTheme(){
-            return window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+        const translations = {
+            ru: { back: "Назад", legal_title: "Правовая информация", updated: "Последнее обновление: Май 2026" },
+            en: { back: "Back", legal_title: "Legal Notice", updated: "Last updated: May 2026" }
+        };
+
+        let currentLang = localStorage.getItem('mediqueez_lang') || 'ru';
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('mediqueez_lang', lang);
+            document.querySelectorAll('.lang-opt').forEach(b => b.classList.toggle('active', b.getAttribute('data-lang') === lang));
+            document.querySelectorAll('[data-ru]').forEach(el => { if (el.getAttribute('data-' + lang)) el.textContent = el.getAttribute('data-' + lang); });
         }
-        
-        function applyTheme(themeState){
-            document.documentElement.setAttribute('data-theme', themeState);
-            
-            document.getElementById('theme-toggle').textContent = themeState === 'dark' ? 'Light' : 'Dark';
+
+        function getSystemTheme() { return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+        function applyTheme(t) {
+            document.documentElement.setAttribute('data-theme', t);
+            document.getElementById('icon-sun').style.display = t === 'dark' ? 'block' : 'none';
+            document.getElementById('icon-moon').style.display = t === 'dark' ? 'none' : 'block';
         }
-        
-        function toggleTheme(){
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            applyTheme(targetTheme);
-            localStorage.setItem('ophthalmoquiz_theme', targetTheme);
+        function toggleTheme() {
+            const c = document.documentElement.getAttribute('data-theme');
+            const n = c === 'dark' ? 'light' : 'dark';
+            applyTheme(n);
+            localStorage.setItem('mediqueez_theme', n);
         }
-        
-        let currentLanguage = localStorage.getItem('ophthalmoquiz_lang') || 'ru';
-        
-        function setLanguage(lang){
-            currentLanguage = lang;
-            localStorage.setItem('ophthalmoquiz_lang', lang);
-            
-        
-            document.getElementById('lang-btn-ru').classList.toggle('active', lang === 'ru');
-            document.getElementById('lang-btn-en').classList.toggle('active', lang === 'en');
-            
-            document.querySelectorAll('[data-ru]').forEach(el => {
-                if(el.getAttribute('data-' + lang)) el.textContent = el.getAttribute('data-' + lang);
-            });
-        }
-        
-       
-        const savedTheme = localStorage.getItem('ophthalmoquiz_theme');
-        applyTheme(savedTheme || getSystemTheme());
-        setLanguage(currentLanguage);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const st = localStorage.getItem('mediqueez_theme');
+            applyTheme(st || getSystemTheme());
+            setLang(currentLang);
+        });
     </script>
 </body>
 </html>
