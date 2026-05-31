@@ -144,7 +144,7 @@
         .page-title { font-family: 'Playfair Display', Georgia, serif; font-size: 2.2rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
         .page-subtitle { color: var(--text-secondary); font-size: 1rem; }
         /* change hadi li lta7t mn 220 l 180 for fitting all cards a si nmi "to activate" ps:now its set for 2 card, check commented code lta7t */
-        .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin-bottom: 40px; }/*{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 40px; }*/
+        .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 40px; }
 @media (max-width: 768px) {
     .cards-grid { grid-template-columns: repeat(2, 1fr); }
 }/*{ display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin-bottom: 40px; }*/
@@ -459,8 +459,8 @@
         </div>
         
         <div class="page-title-section"><h1 class="page-title" id="dashboard-greeting">Добрый вечер</h1></div>
-        <div class="cards-grid">
-            <!--<div class="card" onclick="startQuizSetup('semester1')"><div class="card-accent emerald"></div><div class="card-icon emerald">📗</div><div class="card-title" data-ru="1й Семестр" data-en="1st Semester">1й Семестр</div><div class="card-meta">500 • 5 разделов</div></div>-->
+        <div class="cards-grid"> <!--Hna cards to activate-->
+            <!-- <div class="card" onclick="startQuizSetup('semester1')"><div class="card-accent emerald"></div><div class="card-icon emerald">📗</div><div class="card-title" data-ru="1й Семестр" data-en="1st Semester">1й Семестр</div><div class="card-meta">500 • 5 разделов</div></div> -->
             <div class="card" onclick="startQuizSetup('semester2')"><div class="card-accent amber"></div><div class="card-icon amber">📘</div><div class="card-title" data-ru="2й Семестр" data-en="2nd Semester">2й Семестр</div><div class="card-meta">500 • 5 разделов</div></div>
             <div class="card" onclick="startQuizSetup('semester3')"><div class="card-accent rose"></div><div class="card-icon rose">📙</div><div class="card-title" data-ru="3й Семестр" data-en="3rd Semester">3й Семестр</div><div class="card-meta">500 • 5 разделов</div></div>
             <div class="card" onclick="startQuizSetup('gia')"><div class="card-accent sky"></div><div class="card-icon sky">🎓</div><div class="card-title">ГИА</div><div class="card-meta">1000 • 10 разделов</div></div>
@@ -517,10 +517,10 @@
 </div></div><div class="main-container">
         <div class="page-title-section"><h1 class="page-title" data-ru="Доступные тесты" data-en="Available Tests">Доступные тесты</h1></div>
         <div class="cards-grid">
-            <!--<div class="card" onclick="startQuizSetup('semester1')"><div class="card-accent emerald"></div><div class="card-icon emerald">📗</div><div class="card-title" data-ru="1й Семестр" data-en="1st Semester">1й Семестр</div><div class="card-meta">500 • 5 разделов</div></div>-->
-            <div class="card" onclick="startQuizSetup('semester2')"><div class="card-accent amber"></div><div class="card-icon amber">📘</div><div class="card-title" data-ru="2й Семестр" data-en="2nd Semester">2й Семестр</div><div class="card-meta">500 • 5 разделов</div></div>
-            <div class="card" onclick="startQuizSetup('semester3')"><div class="card-accent rose"></div><div class="card-icon rose">📙</div><div class="card-title" data-ru="3й Семестр" data-en="3rd Semester">3й Семестр</div><div class="card-meta">500 • 5 разделов</div></div>
-            <div class="card" onclick="startQuizSetup('gia')"><div class="card-accent sky"></div><div class="card-icon sky">🎓</div><div class="card-title">ГИА</div><div class="card-meta">1000 • 10 разделов</div></div>
+            <!--<div class="card" onclick="startQuizSetup('semester1')"><div class="card-accent emerald"></div><div class="card-icon emerald">📗</div><div class="card-title" data-ru="1й Семестр" data-en="1st Semester">1й Семестр</div></div> -->
+            <div class="card" onclick="startQuizSetup('semester2')"><div class="card-accent amber"></div><div class="card-icon amber">📘</div><div class="card-title" data-ru="2й Семестр" data-en="2nd Semester">2й Семестр</div></div>
+            <div class="card" onclick="startQuizSetup('semester3')"><div class="card-accent rose"></div><div class="card-icon rose">📙</div><div class="card-title" data-ru="3й Семестр" data-en="3rd Semester">3й Семестр</div></div>
+            <div class="card" onclick="startQuizSetup('gia')"><div class="card-accent sky"></div><div class="card-icon sky">🎓</div><div class="card-title">ГИА</div></div>
             <!-- <div class="card" onclick="window.location.href='zadachy.html'"> <div class="card-accent" style="background:linear-gradient(90deg,#8b5cf6,#a78bfa);"></div><div class="card-icon purple">📋</div><div class="card-title" data-ru="Задачи" data-en="Cases">Задачи</div><div class="card-desc" data-ru="Клинические случаи" data-en="Clinical cases">Клинические случаи</div><div class="card-meta"><span data-ru="Скоро" data-en="Soon">Скоро</span></div> </div> -->    
         </div>
     </div>
@@ -741,13 +741,11 @@
 
 function toggleMenu(btn) {
     const nav = btn.nextElementSibling;
-    
-    // Toggle the menu
+
     if (nav.classList.contains('open')) {
         nav.classList.remove('open');
     } else {
         nav.classList.add('open');
-        // Close when clicking outside (with a tiny delay to avoid immediate close)
         setTimeout(() => {
             document.addEventListener('click', function closeMenu(e) {
                 if (!nav.contains(e.target) && e.target !== btn) {
@@ -776,12 +774,10 @@ function selectQuizAnswer(sel){
 });
     saveQuizProgress();
     
-    // Blitz mode
 if(selectedMode==='instant'){
     document.getElementById('quiz-next-btn').style.display='inline-block';
     if(document.getElementById('quiz-auto-skip').checked)setTimeout(()=>quizNext(),1200);
 }
-// Exam mode - respects toggle
 else if(selectedMode==='exam'){
     if(document.getElementById('quiz-auto-skip').checked){
         setTimeout(()=>quizNext(),800);
@@ -795,12 +791,10 @@ function startWrongAnswersQuiz() {
     
     quizStats.history.forEach(quiz => {
         if (quiz.questions && quiz.test) {
-            // Get the full question bank for this test
             const allQ = parseQuestions(getData(quiz.test));
             
             quiz.questions.forEach((q, i) => {
                 if (!q.correct && q.text) {
-                    // Find the matching question in the full bank
                     const fullQ = allQ.find(fq => fq.text === q.text);
                     if (fullQ) {
                         wrongQuestions.push(fullQ);
@@ -819,7 +813,6 @@ function startWrongAnswersQuiz() {
         return;
     }
     
-    // khrb9 les questions
     quizQuestions = wrongQuestions.sort(() => Math.random() - 0.5);
     quizIndex = 0;
     quizScore = 0;
@@ -920,10 +913,9 @@ function updateMaxQ() {
     const m = selectedParts.size * 100;
     document.getElementById('setup-max-q').textContent = m;
     document.getElementById('setup-q-count').max = m;
-    // Auto-fill if empty or if current value exceeds max
     const input = document.getElementById('setup-q-count');
     if (!input.value || parseInt(input.value) === 0 || parseInt(input.value) > m) {
-        input.value = m; // Auto-fill with max available
+        input.value = m; 
     }
 }
        
@@ -1174,8 +1166,21 @@ document.querySelectorAll('#user-greeting').forEach(el => {
        
         let quizQuestions=[],quizIndex=0,quizScore=0,quizHistory=[],quizTimerInt,quizSeconds=0;
         function getData(tt){switch(tt){case'semester1':return SEMESTER1_DATA;case'semester2':return SEMESTER2_DATA;case'semester3':return SEMESTER3_DATA;case'gia':return GIA_DATA;default:return SEMESTER2_DATA;}}
-        function parseQuestions(d){const blocks=d.split(/В\s+\d+\s+/).filter(b=>b.trim());return blocks.map(b=>{const p=b.split(/\n\s*О\s+[АБВГ]\s+/);return{text:p[0].trim(),correct:p[1]?.trim()||'',options:p.slice(1,5).map(o=>o.trim())};});}
+function parseQuestions(d) {
+    const blocks = d.split(/В\s+\d+\.?\s+/).filter(b => b.trim());
+    
+    return blocks.map(b => {
+        const parts = b.split(/\n\s*О\s+[АБВГД]\s+/);
+        const text = parts[0].trim();
+        const options = parts.slice(1).map(o => o.trim()).filter(o => o.length > 0);
         
+        return {
+            text: text,
+            correct: options[0] || '',
+            options: options.slice(0, 5)
+        };
+    });
+}        
         function initQuizEngine(count) {
             const loading = document.getElementById('quiz-loading');
             loading.classList.add('active');
@@ -1197,7 +1202,7 @@ document.querySelectorAll('#user-greeting').forEach(el => {
 
 if(selectedMode==='teach'){
     document.getElementById('quiz-skip-btn').style.display='none';
-    document.getElementById('quiz-auto-toggle').style.display='flex'; // Show toggle
+    document.getElementById('quiz-auto-toggle').style.display='flex';
     document.getElementById('quiz-next-btn').style.display='inline-block';
     document.getElementById('quiz-next-btn').style.background='var(--accent)';
     document.getElementById('quiz-next-btn').style.color='white';
@@ -1217,7 +1222,6 @@ if(selectedMode==='teach'){
     q.shuffled.forEach(opt=>{
         const d=document.createElement('div');d.className='quiz-option';d.textContent=opt;
         
-        
         if(selectedMode==='teach'){
             d.classList.add('disabled');
             if(opt===q.correct)d.classList.add('correct');
@@ -1229,7 +1233,7 @@ if(selectedMode==='teach'){
             if(opt===q.correct)d.classList.add('correct');
             if(opt===ans.selected&&!ans.correct)d.classList.add('wrong');
         }
-        
+       
         else{
             d.onclick=()=>selectQuizAnswer(opt);
         }
@@ -1325,7 +1329,7 @@ if (quizStats.totalQuizzes >= 4) {
             document.getElementById('user-name-input').addEventListener('keydown',e=>{if(e.key==='Enter')saveUserName();});
             updateGreeting();renderDashboardExtras();checkForSavedQuiz();
             // Here ktb message li bghit of course: bdl message and id everytime, dont forget to activate
-           //showAnnouncement('عيد مبارك! نتمنى لكم عيداً سعيداً. 🐑✨ <br><span style="font-size:0.8rem;opacity:0.8;">Поздравляю с праздником Ураза-байрам! 🐑✨ </span>','Eid2026');
+            // showAnnouncement('Message in russian <a href="https://t.me/mediqueezbot" target="_blank" rel="noopener">Telegram</a> <br><span style="font-size:0.8rem;opacity:0.8;">message in english</span>','newyear2026');
         });
 
         // les consts lta7t dya les questions
