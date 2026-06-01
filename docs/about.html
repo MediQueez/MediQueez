@@ -1,202 +1,469 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About — MediQueez</title>
     <link rel="icon" type="image/png" href="../assets/mediflavicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg: #f8fafc; --surface: #ffffff; --surface-alt: #f1f5f9; --border: #e2e8f0;
-            --text: #0f172a; --text-secondary: #64748b; --accent: #6366f1; --accent-light: #818cf8;
-            --accent-bg: #eef2ff; --radius: 14px; --radius-sm: 10px;
-            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04); --shadow: 0 1px 3px rgba(0,0,0,0.06);
-            --shadow-lg: 0 10px 30px rgba(0,0,0,0.08); --transition: 0.2s ease;
+            --stormcloud-ink: #282e3e;
+            --quizlet-violet: #4255ff;
+            --sky-study: #98e3ff;
+            --flashcard-pink: #eeaaff;
+            --night-violet: #423ed8;
+            --practice-orange: #ffc38c;
+            --slate-text: #586380;
+            --light-slate: #939bb4;
+            --deep-slate: #2e3856;
+            --page-background: #f6f7fb;
+            --pure-white: #ffffff;
+            --ash-border: #d9dde8;
+            --correct: #10b981;
+            --correct-bg: #ecfdf5;
+            
+            --font-primary: 'Inter', ui-sans-serif, system-ui, sans-serif;
+            
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-full: 200px;
+            
+            --shadow-sm: rgba(40, 46, 62, 0.1) 0px 2px 4px 0px;
+            --shadow-md: rgba(40, 46, 62, 0.1) 0px 4px 16px 0px;
+            
+            --transition: 0.2s ease;
         }
+
         [data-theme="dark"] {
-            --bg: #0f172a; --surface: #1e293b; --surface-alt: #334155; --border: #334155;
-            --text: #f1f5f9; --text-secondary: #94a3b8; --accent: #818cf8; --accent-light: #a5b4fc;
-            --accent-bg: #1e1b4b;
+            --stormcloud-ink: #f1f5f9;
+            --quizlet-violet: #818cf8;
+            --sky-study: #1e3a5f;
+            --flashcard-pink: #4a1d3a;
+            --night-violet: #2d1f5e;
+            --practice-orange: #5c3a1e;
+            --slate-text: #94a3b8;
+            --light-slate: #64748b;
+            --deep-slate: #cbd5e1;
+            --page-background: #0f172a;
+            --pure-white: #1e293b;
+            --ash-border: #334155;
+            --correct: #34d399;
+            --correct-bg: rgba(6, 78, 59, 0.5);
+            --shadow-sm: rgba(0, 0, 0, 0.3) 0px 2px 4px 0px;
+            --shadow-md: rgba(0, 0, 0, 0.4) 0px 4px 16px 0px;
         }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.7; -webkit-font-smoothing: antialiased; transition: background var(--transition), color var(--transition); padding: 40px 20px; }
         
-        .page-container { max-width: 900px; margin: 0 auto; }
-        
-        .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--text-secondary); font-weight: 500; font-size: 0.85rem; text-decoration: none; margin-bottom: 40px; transition: color var(--transition); }
-        .back-link:hover { color: var(--accent); }
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--page-background);
+            color: var(--stormcloud-ink);
+            min-height: 100vh;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Fixed Top Bar */
+        .top-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 64px;
+            background: var(--pure-white);
+            border-bottom: 1px solid var(--ash-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+        .top-nav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--slate-text);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+        .back-link:hover { color: var(--quizlet-violet); }
         .back-link svg { width: 16px; height: 16px; }
-        
-        .hero-section { margin-bottom: 48px; }
-        .hero-name { font-family: 'Playfair Display', Georgia, serif; font-size: 2.8rem; font-weight: 700; color: var(--text); margin-bottom: 8px; letter-spacing: -0.5px; }
-        .hero-line { width: 60px; height: 3px; background: var(--accent); border-radius: 2px; margin-bottom: 24px; }
-        .hero-text { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.9; max-width: 650px; }
-        .hero-text strong { color: var(--text); font-weight: 600; }
-        
-        .section-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1.4rem; font-weight: 700; color: var(--text); margin-bottom: 20px; }
-        
-        
-        .carousel-section { margin-bottom: 60px; }
-        .carousel-container { 
-            max-width: 900px; margin: 0 auto; position: relative; 
-            height: 420px;
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
-        .carousel-viewport { 
-            position: relative; width: 100%; height: 100%; 
+        .lang-pair {
+            display: flex;
+            gap: 2px;
+            background: var(--ash-border);
+            border-radius: var(--radius-sm);
+            padding: 2px;
+        }
+        .lang-opt {
+            padding: 6px 10px;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 0.75rem;
+            border: none;
+            cursor: pointer;
+            background: transparent;
+            color: var(--slate-text);
+            transition: all var(--transition);
+        }
+        .lang-opt.active {
+            background: var(--quizlet-violet);
+            color: var(--pure-white);
+        }
+        .theme-dot {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--ash-border);
+            background: var(--pure-white);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--slate-text);
+            transition: all var(--transition);
+        }
+        .theme-dot:hover { border-color: var(--quizlet-violet); color: var(--quizlet-violet); }
+        .theme-dot svg { width: 18px; height: 18px; }
+
+        /* Main Content */
+        .main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 104px 24px 64px;
+        }
+
+        /* Hero */
+        .hero-section {
+            margin-bottom: 48px;
+        }
+        .hero-name {
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: var(--stormcloud-ink);
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+        }
+        .hero-accent-line {
+            width: 50px;
+            height: 4px;
+            background: var(--quizlet-violet);
+            border-radius: 2px;
+            margin-bottom: 24px;
+        }
+        .hero-text {
+            font-size: 1.05rem;
+            color: var(--slate-text);
+            line-height: 1.8;
+            max-width: 620px;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--stormcloud-ink);
+            margin-bottom: 20px;
+        }
+
+        /* Carousel */
+        .carousel-section {
+            margin-bottom: 48px;
+        }
+        .carousel-container {
+            position: relative;
+            height: 380px;
             overflow: hidden;
+            border-radius: var(--radius-md);
         }
-        .carousel-slide { 
+        .carousel-viewport {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .carousel-slide {
             position: absolute;
             width: 50%;
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1.2); 
-            opacity: 0.4; 
-            transform: scale(0.8); 
-            filter: blur(2px); 
-            cursor: pointer; 
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+            opacity: 0.4;
+            transform: scale(0.8);
+            filter: blur(2px);
+            cursor: pointer;
             z-index: 1;
             top: 5%;
         }
-        .carousel-slide.active { 
+        .carousel-slide.active {
             width: 75%;
-            opacity: 1; 
-            transform: scale(1); 
-            filter: blur(0); 
+            opacity: 1;
+            filter: blur(0);
             z-index: 3;
             left: 50%;
             transform: translateX(-50%) scale(1);
             top: 0;
         }
-        .carousel-slide.left { 
+        .carousel-slide.left {
             left: -8%;
             transform: scale(0.8);
             top: 8%;
         }
-        .carousel-slide.right { 
+        .carousel-slide.right {
             right: -8%;
             left: auto;
             transform: scale(0.8);
             top: 8%;
         }
-        .carousel-slide img { 
-            width: 100%; 
+        .carousel-slide img {
+            width: 100%;
             height: auto;
-            max-height: 400px;
+            max-height: 360px;
             object-fit: contain;
-            border-radius: var(--radius); 
-            box-shadow: var(--shadow-lg); 
-            border: 1px solid var(--border); 
-            display: block; 
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            display: block;
         }
-        .carousel-btn { 
-            position: absolute; top: 45%; transform: translateY(-50%); 
-            background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2); 
-            width: 44px; height: 44px; border-radius: 50%; 
-            cursor: pointer; font-size: 1.4rem; color: white; 
-            z-index: 20; transition: all 0.3s ease; 
-            display: flex; align-items: center; justify-content: center;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--pure-white);
+            border: 1px solid var(--ash-border);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--stormcloud-ink);
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
         }
-        [data-theme="light"] .carousel-btn { 
-            background: rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.15); color: #333; text-shadow: none;
+        .carousel-btn:hover {
+            background: var(--quizlet-violet);
+            color: var(--pure-white);
+            border-color: var(--quizlet-violet);
         }
-        .carousel-btn:hover { 
-            background: var(--accent); color: white; border-color: var(--accent); text-shadow: none;
-        }
-        .carousel-btn.prev { left: 5px; }
-        .carousel-btn.next { right: 5px; }
+        .carousel-btn.prev { left: 8px; }
+        .carousel-btn.next { right: 8px; }
 
-        @media (max-width: 768px) {
-            .carousel-container { height: 280px; }
+        /* Work Cards */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+        .work-card {
+            background: var(--pure-white);
+            border-radius: var(--radius-md);
+            padding: 24px 20px;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .work-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+        }
+        .work-card:nth-child(1)::before { background: var(--quizlet-violet); }
+        .work-card:nth-child(2)::before { background: var(--night-violet); }
+        .work-card:nth-child(3)::before { background: var(--practice-orange); }
+        .work-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        .work-card-type {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--quizlet-violet);
+            margin-bottom: 10px;
+        }
+        .work-card-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--stormcloud-ink);
+            margin-bottom: 4px;
+        }
+        .work-card-desc {
+            font-size: 0.85rem;
+            color: var(--slate-text);
+        }
+
+        /* CTA */
+        .cta-section {
+            background: var(--pure-white);
+            border-radius: var(--radius-md);
+            padding: 36px 32px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-sm);
+        }
+        .cta-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--stormcloud-ink);
+            margin-bottom: 8px;
+        }
+        .cta-text {
+            font-size: 0.9rem;
+            color: var(--slate-text);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .btn-primary {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--quizlet-violet);
+            color: var(--pure-white);
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-primary:hover {
+            filter: brightness(1.1);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+        .btn-outline {
+            display: inline-block;
+            padding: 10px 22px;
+            border-radius: var(--radius-full);
+            border: 2px solid var(--ash-border);
+            background: var(--pure-white);
+            color: var(--stormcloud-ink);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .btn-outline:hover {
+            border-color: var(--quizlet-violet);
+            color: var(--quizlet-violet);
+        }
+
+        /* Contact Icons */
+        .contact-icons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 48px;
+        }
+        .contact-icon-link {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--pure-white);
+            border: 1px solid var(--ash-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--slate-text);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: var(--shadow-sm);
+        }
+        .contact-icon-link:hover {
+            transform: translateY(-5px);
+            color: var(--quizlet-violet);
+            border-color: var(--quizlet-violet);
+            box-shadow: var(--shadow-md);
+        }
+        .contact-icon-link svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+        .contact-icon-link:hover svg {
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        .page-footer {
+            text-align: center;
+            color: var(--slate-text);
+            font-size: 0.8rem;
+            padding-top: 24px;
+            border-top: 1px solid var(--ash-border);
+        }
+
+        @media (max-width: 700px) {
+            .hero-name { font-size: 2rem; }
+            .work-grid { grid-template-columns: 1fr; }
+            .carousel-container { height: 260px; }
             .carousel-slide { width: 55%; }
             .carousel-slide.active { width: 85%; }
-            .carousel-slide img { max-height: 260px; }
-            .carousel-btn { width: 36px; height: 36px; font-size: 1rem; }
-        }
-
-        .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 48px; }
-        .work-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 28px 22px; transition: all var(--transition); position: relative; overflow: hidden; }
-        .work-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
-        .work-card:nth-child(1)::before { background: #6366f1; }
-        .work-card:nth-child(2)::before { background: #10b981; }
-        .work-card:nth-child(3)::before { background: #f59e0b; }
-        .work-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
-        .work-card-type { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 12px; }
-        .work-card-title { font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 6px; }
-        .work-card-desc { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; }
-        
-        .cta-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 36px 32px; text-align: center; margin-bottom: 40px; }
-        .cta-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
-        .cta-text { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 22px; line-height: 1.7; }
-        .cta-section button { transition: all 0.2s ease; }
-        .cta-link { display: inline-block; padding: 13px 30px; background: var(--text); color: var(--bg); border-radius: 8px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all var(--transition); }
-        .cta-link:hover { background: var(--accent); color: white; transform: translateY(-1px); box-shadow: var(--shadow-lg); }
-        
-        .contact-icons { display: flex; gap: 20px; justify-content: center; margin-bottom: 48px; }
-        .contact-icon-link { 
-            width: 48px; height: 48px; 
-            border-radius: 50%; 
-            background: var(--surface); 
-            border: 1px solid var(--border); 
-            display: flex; align-items: center; justify-content: center; 
-            color: var(--text-secondary); 
-            text-decoration: none; 
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-        }
-        .contact-icon-link:hover { 
-            transform: translateY(-6px); 
-            color: var(--accent); 
-            border-color: var(--accent-light); 
-            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.2); 
-        }
-        .contact-icon-link svg { width: 20px; height: 20px; transition: transform 0.3s ease; }
-        .contact-icon-link:hover svg { transform: scale(1.1); }
-        
-        .page-footer { text-align: left; color: var(--text-secondary); font-size: 0.78rem; padding-top: 24px; border-top: 1px solid var(--border); }
-        
-        .fixed-toggles { position: fixed; top: 20px; right: 20px; display: flex; gap: 8px; z-index: 10; align-items: center; }
-        .lang-toggle { display: flex; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 2px; gap: 2px; box-shadow: var(--shadow-sm); }
-        .lang-btn { padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 0.78rem; border: none; cursor: pointer; background: transparent; color: var(--text-secondary); font-family: 'Inter', sans-serif; transition: all var(--transition); }
-        .lang-btn.active { background: var(--accent); color: white; }
-        .theme-btn { width: 38px; height: 38px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); transition: all var(--transition); }
-
-        @media (max-width: 600px) {
-            .hero-name { font-size: 2.2rem; }
-            .work-grid { grid-template-columns: 1fr; }
-            .contact-row { flex-direction: column; }
-            .fixed-toggles { top: 12px; right: 12px; }
+            .carousel-slide img { max-height: 240px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="fixed-toggles">
-        <div class="lang-toggle">
-            <button class="lang-btn active" onclick="setLanguage('ru')">RU</button>
-            <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+    <!-- Fixed Top Bar -->
+    <header class="top-nav">
+        <div class="top-nav-left">
+            <a href="javascript:history.back()" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                <span data-ru="Назад" data-en="Back">Назад</span>
+            </a>
         </div>
-        <button class="theme-btn" onclick="toggleTheme()" id="theme-toggle" aria-label="Toggle theme">
-            <svg id="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-            <svg id="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-        </button>
-    </div>
+        <div class="nav-controls">
+            <div class="lang-pair">
+                <button class="lang-opt active" data-lang="ru" onclick="setLang('ru')">RU</button>
+                <button class="lang-opt" data-lang="en" onclick="setLang('en')">EN</button>
+            </div>
+            <button class="theme-dot" onclick="toggleTheme()" aria-label="Toggle theme" id="theme-btn">
+                <svg id="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:none;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                <svg id="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+        </div>
+    </header>
 
-    <div class="page-container">
-        
-        <a href="javascript:history.back()" class="back-link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-            <span data-ru="Назад" data-en="Back">Назад</span>
-        </a>
-        
-        <div class="hero-section">
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Hero -->
+        <section class="hero-section">
             <h1 class="hero-name">Я.</h1>
-            <div class="hero-line"></div>
+            <div class="hero-accent-line"></div>
             <p class="hero-text">
-                <span data-ru="Меня зовут Яс. Я ординатор-офтальмолог и веб-разработчик. Создаю чистые, функциональные веб-сайты для бизнеса и образовательных проектов." data-en="My name is Y, I'm an ophthalmology resident and web developer. I build clean, functional websites for businesses and educational projects.">Меня зовут Яс. Я ординатор-офтальмолог и веб-разработчик. Создаю чистые, функциональные веб-сайты для бизнеса и образовательных проектов.</span>
-            </p>
-        </div>
-        
-        <div class="carousel-section">
+    <span data-ru="Меня зовут Яссин. Я ординатор-офтальмолог и веб-разработчик. Создаю чистые, функциональные веб-сайты для бизнеса и различных проектов." data-en="My name is Yassine, I'm an ophthalmology resident and web developer. I build clean, functional websites for businesses and various projects.">Меня зовут Яссин. Я ординатор-офтальмолог и веб-разработчик. Создаю чистые, функциональные веб-сайты для бизнеса и различных проектов.</span>
+</p>
+        </section>
+
+        <!-- Carousel -->
+        <section class="carousel-section">
             <h2 class="section-title" data-ru="Примеры работ" data-en="Recent Work">Примеры работ</h2>
             <div class="carousel-container">
                 <div class="carousel-viewport">
@@ -208,92 +475,103 @@
                 <button class="carousel-btn prev" onclick="moveCarousel(-1)">‹</button>
                 <button class="carousel-btn next" onclick="moveCarousel(1)">›</button>
             </div>
-        </div>
-        
-        <div class="cta-section">
+        </section>
+
+
+        <!-- CTA -->
+        <section class="cta-section">
             <h2 class="cta-title" data-ru="Давайте работать вместе" data-en="Let's Work Together">Давайте работать вместе</h2>
             <p class="cta-text" data-ru="Нужен сайт для вашего бизнеса? Я всегда открыт для интересных проектов и сотрудничества." data-en="Need a website for your business? I'm always open for interesting projects and collaboration.">Нужен сайт для вашего бизнеса? Я всегда открыт для интересных проектов и сотрудничества.</p>
-            <div style="display: flex; align-items: center; gap: 12px; justify-content: center; flex-wrap: wrap;">
-                <span style="font-weight: 600; font-size: 0.95rem; color: var(--text);">📧 mediqueez@yandex.ru</span>
-                <button onclick="copyEmail()" style="padding: 8px 16px; background: var(--surface-alt); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--text); transition: all var(--transition);">
-                    <span data-ru="Копировать" data-en="Copy">Копировать</span>
-                </button>
-                <a href="mailto:mediqueez@yandex.ru" style="padding: 8px 16px; background: var(--accent); color: white; border-radius: 6px; text-decoration: none; font-size: 0.8rem; font-weight: 600; transition: all var(--transition);">
-                    <span data-ru="Открыть почту" data-en="Open Mail">Открыть почту</span>
-                </a>
+            <div style="display:flex;align-items:center;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:12px;">
+                <span style="font-weight:600;font-size:0.9rem;color:var(--stormcloud-ink);">📧 mediqueez@yandex.ru</span>
+                <button onclick="copyEmail()" class="btn-outline" data-ru="Копировать" data-en="Copy">Копировать</button>
+                <a href="mailto:mediqueez@yandex.ru" class="btn-primary" style="font-size:0.85rem;padding:10px 22px;" data-ru="Открыть почту" data-en="Open Mail">Открыть почту</a>
             </div>
-            <p style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 12px;" data-ru="Или свяжитесь через соцсети ниже" data-en="Or reach out via social links below">Или свяжитесь через соцсети ниже</p>
-        </div>
-        
+            <p style="font-size:0.75rem;color:var(--slate-text);" data-ru="Или свяжитесь через соцсети ниже" data-en="Or reach out via social links below">Или свяжитесь через соцсети ниже</p>
+        </section>
+
+        <!-- Contact Icons -->
         <div class="contact-icons">
-            <a href="mailto:mediqueez@yandex.ru" class="contact-icon-link" title="Email" aria-label="Email">
+            <a href="mailto:mediqueez@yandex.ru" class="contact-icon-link" title="Email">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
             </a>
-            <a href="https://t.me/mediqueezbot" target="_blank" rel="noopener" class="contact-icon-link" title="Telegram" aria-label="Telegram">
+            <a href="https://t.me/mediqueezbot" target="_blank" rel="noopener" class="contact-icon-link" title="Telegram">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9 22 2z"/></svg>
             </a>
-            <a href="https://instagram.com/yassinelaamri" target="_blank" rel="noopener" class="contact-icon-link" title="Instagram" aria-label="Instagram">
+            <a href="https://instagram.com/" target="_blank" rel="noopener" class="contact-icon-link" title="Instagram">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1"/></svg>
             </a>
-            <!--<a href="https://github.com/MediQueez" target="_blank" rel="noopener" class="contact-icon-link" title="GitHub" aria-label="GitHub">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-            </a>-->
         </div>
-        
-        <div class="page-footer">
-            <span data-ru="OphthalmoQueez © 2026 — Медицина днём, код вечером." data-en="OphthalmoQueez © 2026 — Medicine by day, code by night.">OphthalmoQueez © 2026. — Медицина днём, код вечером.</span>
-        </div>
-    </div>
+
+        <!-- Footer -->
+        <footer class="page-footer">
+            <span data-ru="OphthalmoQueez © 2026 — Медицина днём, код вечером." data-en="OphthalmoQueez © 2026 — Medicine by day, code by night.">OphthalmoQueez © 2026 — Медицина днём, код вечером.</span>
+        </footer>
+    </main>
 
     <script>
-        function getSystemTheme(){return window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';}
-        function applyTheme(t){
-            document.documentElement.setAttribute('data-theme',t);
-            document.getElementById('theme-icon-sun').style.display = t==='light' ? 'none' : 'block';
-            document.getElementById('theme-icon-moon').style.display = t==='light' ? 'block' : 'none';
-            if (t === 'dark') document.getElementById('theme-icon-sun').style.stroke = '#ffffff';
+        const translations = {
+            ru: { back: "Назад", recent_work: "Примеры работ", what_i_do: "Что я делаю", business: "Бизнес-сайты", cafe_title: "Кафе и рестораны", cafe_desc: "Одностраничные сайты с меню, галереей и контактами.", clothing: "Бренды одежды", boutique_title: "Нишевые магазины", boutique_desc: "Минималистичные каталоги и лукбуки.", education: "Образование", edu_title: "Учебные платформы", edu_desc: "Интерактивные тесты и квизы для студентов.", cta_title: "Давайте работать вместе", cta_text: "Нужен сайт для вашего бизнеса? Я всегда открыт для интересных проектов и сотрудничества.", copy: "Копировать", open_mail: "Открыть почту", social_hint: "Или свяжитесь через соцсети ниже", footer: "OphthalmoQueez © 2026 — Медицина днём, код вечером." },
+            en: { back: "Back", recent_work: "Recent Work", what_i_do: "What I Do", business: "Business Sites", cafe_title: "Cafés & Restaurants", cafe_desc: "Single-page sites with menus, galleries, and contacts.", clothing: "Clothing Brands", boutique_title: "Niche Boutiques", boutique_desc: "Minimalist catalogs and lookbooks.", education: "Education", edu_title: "Learning Platforms", edu_desc: "Interactive tests and quizzes for students.", cta_title: "Let's Work Together", cta_text: "Need a website for your business? I'm always open for interesting projects and collaboration.", copy: "Copy", open_mail: "Open Mail", social_hint: "Or reach out via social links below", footer: "OphthalmoQueez © 2026 — Medicine by day, code by night." }
+        };
+
+        let currentLang = localStorage.getItem('mediqueez_lang') || 'ru';
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('mediqueez_lang', lang);
+            document.querySelectorAll('.lang-opt').forEach(b => b.classList.toggle('active', b.getAttribute('data-lang') === lang));
+            document.querySelectorAll('[data-ru]').forEach(el => { if (el.getAttribute('data-' + lang)) el.textContent = el.getAttribute('data-' + lang); });
         }
-        function toggleTheme(){const c=document.documentElement.getAttribute('data-theme');applyTheme(c==='dark'?'light':'dark');localStorage.setItem('ophthalmoquiz_theme',c==='dark'?'light':'dark');}
-        let currentLanguage=localStorage.getItem('ophthalmoquiz_lang')||'ru';
-        function setLanguage(lang){currentLanguage=lang;localStorage.setItem('ophthalmoquiz_lang',lang);document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim().toLowerCase()===lang));document.querySelectorAll('[data-ru]').forEach(el=>{if(el.getAttribute('data-'+lang))el.textContent=el.getAttribute('data-'+lang);});}
-        const savedTheme=localStorage.getItem('ophthalmoquiz_theme');applyTheme(savedTheme||getSystemTheme());setLanguage(currentLanguage);
-        
+
+        function getSystemTheme() { return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+        function applyTheme(t) {
+            document.documentElement.setAttribute('data-theme', t);
+            document.getElementById('icon-sun').style.display = t === 'dark' ? 'block' : 'none';
+            document.getElementById('icon-moon').style.display = t === 'dark' ? 'none' : 'block';
+        }
+        function toggleTheme() {
+            const c = document.documentElement.getAttribute('data-theme');
+            const n = c === 'dark' ? 'light' : 'dark';
+            applyTheme(n);
+            localStorage.setItem('mediqueez_theme', n);
+        }
+
         function copyEmail() {
             const email = 'mediqueez@yandex.ru';
             const btn = event.target;
-            const originalHTML = btn.innerHTML;
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(email).then(() => showCopySuccess(btn, originalHTML)).catch(() => fallbackCopy(email, btn, originalHTML));
-            } else { fallbackCopy(email, btn, originalHTML); }
-        }
-        function fallbackCopy(text, btn, originalHTML) {
-            const textarea = document.createElement('textarea'); textarea.value = text; textarea.style.position = 'fixed'; textarea.style.opacity = '0';
-            document.body.appendChild(textarea); textarea.select();
-            try { document.execCommand('copy'); showCopySuccess(btn, originalHTML); }
-            catch(e) { btn.innerHTML = '<span data-ru="✗ Не удалось" data-en="✗ Failed">✗ Не удалось</span>'; setTimeout(() => { btn.innerHTML = originalHTML; }, 2000); }
-            document.body.removeChild(textarea);
-        }
-        function showCopySuccess(btn, originalHTML) {
-            const lang = currentLanguage || 'ru';
-            btn.innerHTML = lang === 'ru' ? '✓ Скопировано!' : '✓ Copied!';
-            btn.style.background = 'var(--correct-bg, #ecfdf5)'; btn.style.color = 'var(--correct, #10b981)'; btn.style.borderColor = 'var(--correct, #10b981)';
-            setTimeout(() => { btn.innerHTML = originalHTML; btn.style.background = ''; btn.style.color = ''; btn.style.borderColor = ''; }, 2000);
+            const orig = btn.textContent;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(email).then(() => {
+                    btn.textContent = currentLang === 'ru' ? '✓ Скопировано!' : '✓ Copied!';
+                    btn.style.background = 'var(--correct-bg)';
+                    btn.style.color = 'var(--correct)';
+                    btn.style.borderColor = 'var(--correct)';
+                    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.style.color = ''; btn.style.borderColor = ''; }, 2000);
+                });
+            }
         }
 
         let carouselIndex = 0;
         const slides = document.querySelectorAll('.carousel-slide');
         const totalSlides = slides.length;
         function updateCarousel() {
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active', 'left', 'right');
-                if (i === carouselIndex) slide.classList.add('active');
-                else if (i === (carouselIndex - 1 + totalSlides) % totalSlides) slide.classList.add('left');
-                else if (i === (carouselIndex + 1) % totalSlides) slide.classList.add('right');
+            slides.forEach((s, i) => {
+                s.classList.remove('active', 'left', 'right');
+                if (i === carouselIndex) s.classList.add('active');
+                else if (i === (carouselIndex - 1 + totalSlides) % totalSlides) s.classList.add('left');
+                else if (i === (carouselIndex + 1) % totalSlides) s.classList.add('right');
             });
         }
-        function moveCarousel(dir) { carouselIndex = (carouselIndex + dir + totalSlides) % totalSlides; updateCarousel(); }
-        updateCarousel();
-        setInterval(() => moveCarousel(1), 5000);
+        function moveCarousel(d) { carouselIndex = (carouselIndex + d + totalSlides) % totalSlides; updateCarousel(); }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const st = localStorage.getItem('mediqueez_theme');
+            applyTheme(st || getSystemTheme());
+            setLang(currentLang);
+            updateCarousel();
+            setInterval(() => moveCarousel(1), 5000);
+        });
     </script>
 </body>
 </html>
