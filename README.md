@@ -2,6 +2,7 @@
 
 - Pushing for https
 - Sharing for Traffic
+- Added Dermato
 
 ***01/06/2026:***
 
