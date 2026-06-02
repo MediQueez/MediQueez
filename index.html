@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    
     <title>MediQueez</title>
     <meta name="description" content="Интерактивная медицинская квиз-платформа для ординаторов и студентов. Тестирование знаний, подготовка к экзаменам и ГИА по медицинским специальностям." />
     <meta name="yandex-verification" content="9104dfd87fdca48a" />
@@ -14,7 +13,6 @@
     <meta property="og:description" content="Интерактивная медицинская квиз-платформа для тестирования знаний, обучения и подготовки к медицинским экзаменам." />
     <meta property="og:image" content="https://mediqueez.ru/assets/og-preview.jpg" />
 
-    
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://mediqueez.ru/" />
     <meta name="twitter:title" content="MediQueez — Medical Quiz Platform" />
@@ -95,21 +93,20 @@
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
             transition: background-color 0.3s, color 0.3s;
-        }
-        
-body {
-    -webkit-user-select: none;  
-    -moz-user-select: none;    
-    -ms-user-select: none;      
-    user-select: none;         
-}
 
-input, textarea {
-    -webkit-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    user-select: text;
-}
+            
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        input, textarea {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
 
         .top-nav {
             position: fixed;
@@ -277,9 +274,9 @@ input, textarea {
         }
 
         .card-count {
-    color: var(--slate-text);
-    font-weight: 600;
-}
+            color: var(--slate-text);
+            font-weight: 600;
+        }
 
         .specialty-card {
             background: var(--pure-white);
@@ -312,7 +309,6 @@ input, textarea {
             transition: background 0.3s;
         }
 
-        
         .card-color-block.ophth { background: var(--quizlet-violet); }
         .card-color-block.cardio { background: var(--night-violet); }
         .card-color-block.gastro { background: var(--practice-orange); }
@@ -397,36 +393,33 @@ input, textarea {
             color: var(--light-slate);
             margin-bottom: 16px;
         }
-        
     </style>
-    <!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109573599', 'ym');
 
-    ym(109573599, 'init', {
-        webvisor: true, 
-        clickmap: true, 
-        referrer: document.referrer, 
-        url: location.href, 
-        accurateTrackBounce: true, 
-        trackLinks: true,
-        anonIp: true,
-        webvisorForms: false
-    });
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/109573599" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-</head>
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109573599', 'ym');
+
+        ym(109573599, 'init', {
+            webvisor: true, 
+            clickmap: true, 
+            referrer: document.referrer, 
+            url: location.href, 
+            accurateTrackBounce: true, 
+            trackLinks: true,
+            anonIp: true,
+            webvisorForms: true /* Swapped to true per your instructions */
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/109573599" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    </head>
 <body>
 
-    <!-- Fixed Top Navigation -->
     <header class="top-nav">
-        <div class="nav-brand">MQ//Quiz Platform.<!--<a href="docs/about.html">Х</a>--></div>
+        <div class="nav-brand">MQ//Quiz Platform.</div>
         <div class="nav-controls">
             <a href="https://t.me/mediqueezbot" target="_blank" rel="noopener" class="btn-ghost">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -446,7 +439,6 @@ input, textarea {
     </header>
 
     <main class="main-content">
-
         <section class="hero-section">
             <h1 class="hero-title">Medi<em>Queez</em></h1>
             <p class="hero-sub">
@@ -457,8 +449,6 @@ input, textarea {
         </section>
 
         <nav class="cards-grid">
-            
-            <!-- Ophthalmology -->
             <a href="ophthalmo.html" class="specialty-card">
                 <div class="card-color-block ophth">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
@@ -475,24 +465,20 @@ input, textarea {
                 </div>
             </a>
 
+            <div class="specialty-card locked">
+                <div class="card-color-block derma">
+                    <img src="assets/derma.svg" alt="Dermatology" style="width: 44px; height: 44px;">
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title" data-i18n="derma_title">Дерматология</h2>
+                    <p class="card-desc" data-i18n="derma_desc">Кожные-венерические заболевания</p>
+                    <div class="card-footer">
+                        <span class="badge soon" data-i18n="badge_soon">Скоро</span>
+                        <span data-i18n="status_dev">В разработке</span>
+                    </div>
+                </div>
+            </div>
 
-
-            <!-- Dermatology check hadi lfo9 o zid lhref-->
-<div class="specialty-card locked">
-    <div class="card-color-block derma">
-        <img src="assets/derma.svg" alt="Dermatology" style="width: 44px; height: 44px;">
-    </div>
-    <div class="card-body">
-        <h2 class="card-title" data-i18n="derma_title">Дерматология</h2>
-        <p class="card-desc" data-i18n="derma_desc">Кожные-венерические заболевания</p>
-        <div class="card-footer">
-            <span class="badge soon" data-i18n="badge_soon">Скоро</span>
-            <span data-i18n="status_dev">В разработке</span>
-        </div>
-    </div>
-</div>
-
-            <!-- Cardiology -->
             <div class="specialty-card locked">
                 <div class="card-color-block cardio">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
@@ -509,33 +495,26 @@ input, textarea {
                 </div>
             </div>
 
-            <!-- Gastroenterology -->
-<!-- Gastroenterology -->
-<div class="specialty-card locked">
-    <div class="card-color-block gastro">
-        <img src="assets/gastro.svg" alt="Gastroenterology" style="width: 44px; height: 44px;">
-    </div>
-    <div class="card-body">
-        <h2 class="card-title" data-i18n="gastro_title">Гастроэнтерология</h2>
-        <p class="card-desc" data-i18n="gastro_desc">Пищеварительная система</p>
-        <div class="card-footer">
-            <span class="badge soon" data-i18n="badge_soon">Скоро</span>
-            <span data-i18n="status_dev">В разработке</span>
-        </div>
-    </div>
-</div>
-
-            
-
+            <div class="specialty-card locked">
+                <div class="card-color-block gastro">
+                    <img src="assets/gastro.svg" alt="Gastroenterology" style="width: 44px; height: 44px;">
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title" data-i18n="gastro_title">Гастроэнтерология</h2>
+                    <p class="card-desc" data-i18n="gastro_desc">Пищеварительная система</p>
+                    <div class="card-footer">
+                        <span class="badge soon" data-i18n="badge_soon">Скоро</span>
+                        <span data-i18n="status_dev">В разработке</span>
+                    </div>
+                </div>
+            </div>
         </nav>
 
-        <!-- Footer -->
         <footer class="site-footer">
             <p>
                 <span data-ru="MediQueez © • Сделано с" data-en="MediQueez © • Made with">MediQueez © • Сделано с</span> 
                 <span class="heart">♥</span> 
                 <span data-ru="от X." data-en="by X.">от</span> 
-                <!--<a href="docs/about.html">X.</a>-->
             </p>
             <p class="copyright">Все права защищены</p>
             <a href="docs/legal.html" class="btn-legal" data-i18n="legal">Правовая информация</a>
@@ -631,29 +610,25 @@ input, textarea {
             applyTheme(savedTheme || getSystemTheme());
             setLang(currentLang);
         });
+
+        /* --- THE PROTECTIO*/
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'c') {
+                e.preventDefault();
+            }
+            if ((e.ctrlKey || e.metaKey) && e.key === 'x') {
+                e.preventDefault();
+            }
+            if (e.key === 'F12') {
+                e.preventDefault();
+            }
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I') {
+                e.preventDefault();
+            }
+        });
     </script>
-    <script>
-    document.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if ((e.ctrlKey || e.metaKey) && e.key === 'c') {
-            e.preventDefault();
-        }
-        
-        if ((e.ctrlKey || e.metaKey) && e.key === 'x') {
-            e.preventDefault();
-        }
-
-        if (e.key === 'F12') {
-            e.preventDefault();
-        }
-
-        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I') {
-            e.preventDefault();
-        }
-    });
-</script>
 </body>
 </html>
