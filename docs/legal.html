@@ -64,7 +64,6 @@
             user-select: text;
         }
 
-        
         .top-nav {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -266,11 +265,12 @@
             </div>
 
             <div class="legal-section">
-                <h2 data-ru="3. Конфиденциальность и файлы cookie" data-en="3. Privacy Policy &amp; Cookies">3. Конфиденциальность и файлы cookie</h2>
-                <p data-ru="Мы стремимся к максимальной конфиденциальности наших пользователей:" data-en="We are committed to protecting our users' privacy:"></p>
+                <h2 data-ru="3. Конфиденциальность и технические данные" data-en="3. Privacy Policy & Technical Data">3. Конфиденциальность и технические данные</h2>
+                <p data-ru="Мы стремимся к обеспечению максимальной приватности наших посетителей:" data-en="We are committed to maintaining maximum privacy standards for our users:"></p>
                 <ul>
-                    <li data-ru="Локальные данные: Вводимое вами имя пользователя и прогресс тестов сохраняются исключительно локально на вашем устройстве (в браузере через LocalStorage) и не передаются на наши серверы." data-en="Local Data: Any username or quiz progress is stored entirely locally on your own device (via browser LocalStorage) and is never transmitted to our servers.">Локальные данные: Вводимое вами имя пользователя и прогресс тестов сохраняются исключительно локально на вашем устройстве (в браузере через LocalStorage) и не передаются на наши серверы.</li>
-                    <li data-ru="Веб-аналитика: Для анализа посещаемости и улучшения работы интерфейса на сайте используется инструмент веб-аналитики Яндекс Метрика. Он собирает анонимную информацию о вашем взаимодействии с сайтом (клики, просмотры страниц, файлы cookie). IP-адреса пользователей автоматически анонимизируются. Вы можете отключить сохранение cookie в настройках своего браузера." data-en="Web Analytics: To analyze traffic and optimize interface performance, this website utilizes Yandex Metrika. It aggregates anonymous interactions (clicks, page paths, cookies). User IP addresses are automatically anonymized. You can disable cookie tracking in your browser settings at any time.">Веб-аналитика: Для анализа посещаемости и улучшения работы интерфейса на сайте используется инструмент веб-аналитики Яндекс Метрика. Он собирает анонимную информацию о вашем взаимодействии с сайтом (клики, просмотры страниц, файлы cookie). IP-адреса пользователей автоматически анонимизируются. Вы можете отключить сохранение cookie в настройках своего браузера.</li>
+                    <li data-ru="Маркетинговый трекинг: Данный сайт не использует аналитические платформы (такие как Яндекс Метрика, Google Analytics), сторонние рекламные скрипты или маркетинговые файлы cookie. Мы не отслеживаем ваши действия в интернете и не собираем профили поведения." data-en="Marketing Tracking: This website does not use tracking or analytical platforms (such as Yandex Metrika, Google Analytics), third-party advertising scripts, or marketing cookies. We do not monitor your online behavior or build user profiles.">Маркетинговый трекинг: Данный сайт не использует аналитические платформы (такие как Яндекс Метрика, Google Analytics), сторонние рекламные скрипты или маркетинговые файлы cookie. Мы не отслеживаем ваши действия в интернете и не собираем профили поведения.</li>
+                    <li data-ru="Локальные настройки: Выбранная вами языковая локализация и визуальная тема оформления (светлая/темная) сохраняются исключительно на вашем устройстве локально в памяти браузера (через LocalStorage). Эти данные технически необходимы для работы интерфейса и не передаются во внешнюю сеть." data-en="Local Interface Settings: Your chosen language option and theme preferences (light/dark mode) are stored completely locally on your machine via browser LocalStorage. These technical attributes are strictly used to present the requested user interface and are never sent externally.">Локальные настройки: Выбранная вами языковая локализация и визуальная тема оформления (светлая/темная) сохраняются исключительно на вашем устройстве локально в памяти браузера (через LocalStorage). Эти данные технически необходимы для работы интерфейса и не передаются во внешнюю сеть.</li>
+                    <li data-ru="Логи веб-сервера: При просмотре любой страницы в сети Интернет сервер хостинга автоматически фиксирует стандартные технические журналы (включая IP-адрес сетевого подключения, тип браузера и штамп времени). Данные логи создаются исключительно автоматизированными средствами платформы хостинга для обеспечения защиты от сетевых атак и обеспечения стабильности работы сервера." data-en="Web Server Logging: When interacting with any web resource, the hosting infrastructure automatically records basic technical routing logs (including connection IP address, user-agent string, and timestamp). These logs are managed purely by automated server utilities to preserve overall application stability and system security.">Логи веб-сервера: При просмотре любой страницы в сети Интернет сервер хостинга автоматически фиксирует стандартные технические журналы (включая IP-адрес сетевого подключения, тип браузера и штамп времени). Данные логи создаются исключительно автоматизированными средствами платформы хостинга для обеспечения защиты от сетевых атак и обеспечения стабильности работы сервера.</li>
                 </ul>
             </div>
 
@@ -328,8 +328,7 @@
             setLang(currentLang);
         });
 
-        /* --- 7adak tm! --- */
-        
+        /* --- Security Rules --- */
         document.addEventListener('contextmenu', (e) => {
             e.preventDefault();
         });
