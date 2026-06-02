@@ -992,9 +992,9 @@ function toggleTheme(){
     const current = document.documentElement.getAttribute('data-theme');
     const next = current === 'dark' ? 'light' : 'dark';
     applyTheme(next);
-    localStorage.setItem('ophthalmoquiz_theme', next);
+    localStorage.setItem('mediqueez_theme', next);
 }
-        if(window.matchMedia)window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',e=>{if(!localStorage.getItem('ophthalmoquiz_theme'))applyTheme(e.matches?'dark':'light');});
+        if(window.matchMedia)window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',e=>{if(!localStorage.getItem('mediqueez_theme'))applyTheme(e.matches?'dark':'light');});
 
     
         let currentLanguage=localStorage.getItem('ophthalmoquiz_lang')||'ru';
@@ -1348,7 +1348,7 @@ if (quizStats.totalQuizzes >= 4) {
 
         
         document.addEventListener('DOMContentLoaded',()=>{
-            const savedTheme=localStorage.getItem('ophthalmoquiz_theme');applyTheme(savedTheme||getSystemTheme());
+            const savedTheme=localStorage.getItem('mediqueez_theme');applyTheme(savedTheme||getSystemTheme());
             setLanguage(currentLanguage);loadStats();
             buildAllQuestionsData();
             if(!localStorage.getItem('ophthalmoquiz_onboarded')){document.getElementById('onboarding-overlay').style.display='flex';localStorage.setItem('ophthalmoquiz_onboarded','true');}
