@@ -1195,7 +1195,21 @@ document.querySelectorAll('#user-greeting').forEach(el => {
         let quizQuestions=[],quizIndex=0,quizScore=0,quizHistory=[],quizTimerInt,quizSeconds=0;
         function getData(tt){switch(tt){case'semester1':return SEMESTER1_DATA;case'semester2':return SEMESTER2_DATA;case'semester3':return SEMESTER3_DATA;case'gia':return GIA_DATA;default:return SEMESTER2_DATA;}}
 function parseQuestions(d) {
-    const blocks = d.split(/В\s+\d+\.?\s+/).filter(b => b.trim());
+    let blocks = d.split(/\n\s*\d+\.\s+/).filter
+    if (blocks.length > 1) {
+        return blocks.map(b => {
+            const parts = b.split(/\n\s*[а-г]\)\s+/);
+            const text = parts[0].trim();
+            const options = parts.slice(1).map(o => o.trim()).filter(o => o.length > 0);
+            
+            return {
+                text: text,
+                correct: options[0] || '',
+                options: options.slice(0, 5)
+            };
+        });
+    }
+    blocks = d.split(/В\s+\d+\.?\s+/).filter(b => b.trim());
     
     return blocks.map(b => {
         const parts = b.split(/\n\s*О\s+[АБВГД]\s+/);
@@ -1208,7 +1222,7 @@ function parseQuestions(d) {
             options: options.slice(0, 5)
         };
     });
-}        
+}       
         function initQuizEngine(count) {
             const loading = document.getElementById('quiz-loading');
             loading.classList.add('active');
