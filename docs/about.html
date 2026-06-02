@@ -68,9 +68,19 @@
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             transition: background-color 0.3s, color 0.3s;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
-        /* Fixed Top Bar */
+        input, textarea {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
         .top-nav {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -593,6 +603,26 @@
             setLang(currentLang);
             updateCarousel();
             setInterval(() => moveCarousel(1), 5000);
+        });
+        /* --- 7adak tm! --- */
+        
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'c') {
+                e.preventDefault();
+            }
+            if ((e.ctrlKey || e.metaKey) && e.key === 'x') {
+                e.preventDefault();
+            }
+            if (e.key === 'F12') {
+                e.preventDefault();
+            }
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I') {
+                e.preventDefault();
+            }
         });
     </script>
 </body>
