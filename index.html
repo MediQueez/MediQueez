@@ -96,6 +96,20 @@
             -webkit-font-smoothing: antialiased;
             transition: background-color 0.3s, color 0.3s;
         }
+        
+body {
+    -webkit-user-select: none;  
+    -moz-user-select: none;    
+    -ms-user-select: none;      
+    user-select: none;         
+}
+
+input, textarea {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
 
         .top-nav {
             position: fixed;
@@ -618,5 +632,28 @@
             setLang(currentLang);
         });
     </script>
+    <script>
+    document.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'c') {
+            e.preventDefault();
+        }
+        
+        if ((e.ctrlKey || e.metaKey) && e.key === 'x') {
+            e.preventDefault();
+        }
+
+        if (e.key === 'F12') {
+            e.preventDefault();
+        }
+
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I') {
+            e.preventDefault();
+        }
+    });
+</script>
 </body>
 </html>
