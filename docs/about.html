@@ -3,6 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script>
+        (function() {
+            const saved = localStorage.getItem('mediqueez_theme');
+            if (saved) {
+                document.documentElement.setAttribute('data-theme', saved);
+            } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    
     <title>About — MediQueez</title>
     <link rel="icon" type="image/png" href="../assets/mediflavicon.png">
     
@@ -155,14 +167,12 @@
         .theme-dot:hover { border-color: var(--quizlet-violet); color: var(--quizlet-violet); }
         .theme-dot svg { width: 18px; height: 18px; }
 
-        /* Main Content */
         .main-content {
             max-width: 900px;
             margin: 0 auto;
             padding: 104px 24px 64px;
         }
-
-        /* Hero */
+        
         .hero-section {
             margin-bottom: 48px;
         }
@@ -187,7 +197,7 @@
             max-width: 620px;
         }
 
-        /* Section Title */
+        
         .section-title {
             font-size: 1.35rem;
             font-weight: 700;
@@ -195,7 +205,7 @@
             margin-bottom: 20px;
         }
 
-        /* Carousel */
+        
         .carousel-section {
             margin-bottom: 48px;
         }
@@ -277,7 +287,7 @@
         .carousel-btn.prev { left: 8px; }
         .carousel-btn.next { right: 8px; }
 
-        /* Work Cards */
+        
         .work-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -325,7 +335,7 @@
             color: var(--slate-text);
         }
 
-        /* CTA */
+        
         .cta-section {
             background: var(--pure-white);
             border-radius: var(--radius-md);
@@ -383,7 +393,7 @@
             color: var(--quizlet-violet);
         }
 
-        /* Contact Icons */
+        
         .contact-icons {
             display: flex;
             gap: 16px;
@@ -419,7 +429,7 @@
             transform: scale(1.1);
         }
 
-        /* Footer */
+        
         .page-footer {
             text-align: center;
             color: var(--slate-text);
@@ -440,7 +450,7 @@
 </head>
 <body>
 
-    <!-- Fixed Top Bar -->
+   
     <header class="top-nav">
         <div class="top-nav-left">
             <a href="javascript:history.back()" class="back-link">
@@ -460,10 +470,10 @@
         </div>
     </header>
 
-    <!-- Main Content -->
+    
     <main class="main-content">
 
-        <!-- Hero -->
+        
         <section class="hero-section">
             <h1 class="hero-name">Я.</h1>
             <div class="hero-accent-line"></div>
@@ -472,7 +482,7 @@
 </p>
         </section>
 
-        <!-- Carousel -->
+       
         <section class="carousel-section">
             <h2 class="section-title" data-ru="Примеры работ" data-en="Recent Work">Примеры работ</h2>
             <div class="carousel-container">
@@ -488,7 +498,6 @@
         </section>
 
 
-        <!-- CTA -->
         <section class="cta-section">
             <h2 class="cta-title" data-ru="Давайте работать вместе" data-en="Let's Work Together">Давайте работать вместе</h2>
             <p class="cta-text" data-ru="Нужен сайт для вашего бизнеса? Я всегда открыт для интересных проектов и сотрудничества." data-en="Need a website for your business? I'm always open for interesting projects and collaboration.">Нужен сайт для вашего бизнеса? Я всегда открыт для интересных проектов и сотрудничества.</p>
@@ -500,7 +509,6 @@
             <p style="font-size:0.75rem;color:var(--slate-text);" data-ru="Или свяжитесь через соцсети ниже" data-en="Or reach out via social links below">Или свяжитесь через соцсети ниже</p>
         </section>
 
-        <!-- Contact Icons -->
         <div class="contact-icons">
             <a href="mailto:mediqueez@yandex.ru" class="contact-icon-link" title="Email">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
@@ -513,9 +521,8 @@
             </a>
         </div>
 
-        <!-- Footer -->
         <footer class="page-footer">
-            <span data-ru="OphthalmoQueez © 2026 — Медицина днём, код вечером." data-en="OphthalmoQueez © 2026 — Medicine by day, code by night.">OphthalmoQueez © 2026 — Медицина днём, код вечером.</span>
+            <span data-ru="MediQueez © 2026 — Медицина днём, код вечером." data-en="MediQueez © 2026 — Medicine by day, code by night.">MediQueez © 2026 — Медицина днём, код вечером.</span>
         </footer>
     </main>
 
