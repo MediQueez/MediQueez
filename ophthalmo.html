@@ -41,7 +41,19 @@
             --wrong-bg: #7f1d1d; --warning: #fbbf24; --warning-bg: #78350f;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; -webkit-font-smoothing: antialiased; transition: background var(--transition), color var(--transition); }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; -webkit-font-smoothing: antialiased; transition: background var(--transition), color var(--transition); 
+			 -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+			 }
+
+		input, textarea {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
 
        
         .quiz-loading-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 100; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 20px; }
@@ -381,7 +393,7 @@
         accurateTrackBounce: true, 
         trackLinks: true,
         anonIp: true,
-        webvisorForms: false
+        webvisorForms: true
     });
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/109573599" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
@@ -14337,6 +14349,27 @@ WAISWOLM И KASAHARA КОЛИЧЕСТВО СТЕПЕНЕЙ СОСТАВЛЯЕТ
 
 
         `;
+
+			/* --- 7adak tm! --- */
+        
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'c') {
+                e.preventDefault();
+            }
+            if ((e.ctrlKey || e.metaKey) && e.key === 'x') {
+                e.preventDefault();
+            }
+            if (e.key === 'F12') {
+                e.preventDefault();
+            }
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I') {
+                e.preventDefault();
+            }
+        });
     </script>
 </body>
 </html>
