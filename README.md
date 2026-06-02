@@ -1,15 +1,15 @@
-<b>02/06/2026:</b>
+***02/06/2026:***
 
 - Pushing for https
 - Sharing for Traffic
 
-<b>01/06/2026:</b>
+***01/06/2026:***
 
 - Pushing using the new domain : mediqueez.ru
 - Updating Assets, Docs + statics
 
 
-<b>23/05/2026:</b>
+***23/05/2026:***
 
 - First push: Ophthalmoqueez
 - CNAME : opht.work.gd
