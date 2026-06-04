@@ -1,3 +1,11 @@
+
+***04/06/2026:***
+
+- Added Radiology, Cardiology (with CCX)
+- Fixed about+legal
+- Fixed Parsing function
+
+
 ***02/06/2026:***
 
 - Pushing for https
