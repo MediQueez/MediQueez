@@ -808,6 +808,12 @@ function toggleMenu(btn) {
 }
 
 function selectQuizAnswer(sel){
+    if (navigator.vibrate) {
+        const qtemp = quizQuestions[quizIndex];
+        if (sel === qtemp.correct) navigator.vibrate(15);
+        else navigator.vibrate([15, 50, 15]);
+    }
+
     const q=quizQuestions[quizIndex];const isCorrect=sel===q.correct;
     quizHistory[quizIndex]={selected:sel,correct:isCorrect,flagged:!!quizHistory[quizIndex]?.flagged,text:q.text,correctAnswer:q.correct,userAnswer:sel};
     if(isCorrect){quizScore++;playSound('correct');}else{playSound('wrong');}
@@ -1254,7 +1260,13 @@ function parseQuestions(d) {
             setTimeout(() => {
                 const raw=getData(currentSetupTest); const allQ=parseQuestions(raw);
                 let pool=[]; selectedParts.forEach(idx=>{ pool=pool.concat(allQ.slice(idx*100,(idx+1)*100)); });
-                quizQuestions=pool.sort(()=>Math.random()-0.5).slice(0,count);
+const weights = JSON.parse(localStorage.getItem('radioqueez_weights') || '{}');
+quizQuestions = pool.sort((a, b) => {
+    const wA = weights[a.text] ? weights[a.text].weight : 1.0;
+    const wB = weights[b.text] ? weights[b.text].weight : 1.0;
+    if (wB !== wA) return wB - wA;
+    return Math.random() - 0.5;
+}).slice(0, count);
                 quizIndex=0; quizScore=0; quizHistory=[]; quizSeconds=0;
                 clearQuizProgress();
                 document.getElementById('quiz-prev-btn').style.visibility='hidden';
@@ -1326,8 +1338,23 @@ if(selectedMode==='teach'){
         function finishQuiz(){
             clearInterval(quizTimerInt);clearQuizProgress();const pct=Math.round((quizScore/quizQuestions.length)*100);
             quizStats.totalQuizzes++;quizStats.totalQuestions+=quizQuestions.length;quizStats.totalCorrect+=quizScore;
-            quizStats.history.unshift({date:new Date().toISOString(),test:currentSetupTest,score:quizScore,total:quizQuestions.length,percent:pct,mode:selectedMode,questions:quizHistory.map(h=>({text:h.text,correct:h.correct,selected:h.selected,correctAnswer:h.correctAnswer}))});
-            if(quizStats.history.length>20)quizStats.history=quizStats.history.slice(0,20);
+let weights = JSON.parse(localStorage.getItem('radioqueez_weights') || '{}');
+quizHistory.forEach(h => {
+    if (!h.text) return;
+    if (!weights[h.text]) weights[h.text] = { weight: 1.0, history: [] };
+    
+    weights[h.text].history.push(h.correct);
+    if (weights[h.text].history.length > 5) weights[h.text].history.shift();
+    
+    if (!h.correct) {
+        weights[h.text].weight = Math.min(weights[h.text].weight + 0.5, 3.0);
+    } else {
+        weights[h.text].weight = Math.max(weights[h.text].weight - 0.25, 0.25);
+    }
+});
+localStorage.setItem('radioqueez_weights', JSON.stringify(weights));
+
+quizStats.history.unshift({date:new Date().toISOString(),test:currentSetupTest,score:quizScore,total:quizQuestions.length,percent:pct,mode:selectedMode,questions:quizHistory.map(h=>({text:h.text,correct:h.correct,selected:h.selected,correctAnswer:h.correctAnswer}))});            if(quizStats.history.length>20)quizStats.history=quizStats.history.slice(0,20);
             saveStats();updateGreeting();playSound('complete');
             const sc=document.getElementById('result-score-circle');sc.textContent=`${quizScore}/${quizQuestions.length}`;sc.className='result-score-circle';if(pct>=80)sc.classList.add('good');else if(pct>=50)sc.classList.add('medium');else sc.classList.add('bad');
             document.getElementById('result-time').textContent=`${t('time_label')} ${document.getElementById('quiz-timer').textContent}`;
