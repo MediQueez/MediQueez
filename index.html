@@ -686,12 +686,20 @@ neuro_desc: "Nervous system",
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('mediqueez_theme');
-            applyTheme(savedTheme || getSystemTheme());
-            setLang(currentLang);
-        });
+    const savedTheme = localStorage.getItem('mediqueez_theme');
+    applyTheme(savedTheme || getSystemTheme());
+    setLang(currentLang);
 
-        /* --- THE PROTECTIO*/
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'mediqueez_theme' && e.newValue) {
+            applyTheme(e.newValue);
+        }
+        if (e.key === 'mediqueez_lang' && e.newValue) {
+            setLang(e.newValue);
+        }
+    });
+});
+
         document.addEventListener('contextmenu', (e) => {
             e.preventDefault();
         });
