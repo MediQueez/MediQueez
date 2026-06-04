@@ -30,8 +30,6 @@
     <meta name="twitter:description" content="Интерактивная медицинская квиз-платформа для тестирования знаний, обучения и подготовки к медицинским экзаменам." />
     <meta name="twitter:image" content="https://mediqueez.ru/assets/og-preview.jpg" />
 
-    <link rel="shortcut icon" href="https://mediqueez.ru/favicon.ico" type="image/x-icon">
-
     <link rel="icon" type="image/png" href="assets/mediflavicon.png" sizes="32x32">
     <link rel="icon" type="image/png" href="assets/mediflavicon.png" sizes="192x192">
 
@@ -55,6 +53,9 @@
             --flashcard-pink: #eeaaff;
             --night-violet: #423ed8;
             --practice-orange: #ffc38c;
+            --gynecology-rose: #f472b6;
+            --cardiosurg-red: #ef4444;
+            --radiology-teal: #14b8a6;
             --slate-text: #586380;
             --light-slate: #939bb4;
             --deep-slate: #2e3856;
@@ -84,6 +85,9 @@
             --flashcard-pink: #4a1d3a;
             --night-violet: #2d1f5e;
             --practice-orange: #5c3a1e;
+            --gynecology-rose: #9d174d;
+            --cardiosurg-red: #7f1d1d;
+            --radiology-teal: #134e4a;
             --slate-text: #94a3b8;
             --light-slate: #64748b;
             --deep-slate: #cbd5e1;
@@ -326,6 +330,9 @@
         .card-color-block.cardio { background: var(--night-violet); }
         .card-color-block.gastro { background: var(--practice-orange); }
         .card-color-block.derma { background: var(--flashcard-pink); }
+        .card-color-block.gyneco { background: var(--gynecology-rose); }
+        .card-color-block.cardiosurg { background: var(--cardiosurg-red); }
+        .card-color-block.radio { background: var(--radiology-teal); }
 
         .card-color-block svg {
             width: 44px;
@@ -334,18 +341,12 @@
             fill: none;
             stroke-width: 1.8;
             transition: stroke 0.3s;
-                max-width: 44px;
-    max-height: 44px;
-    object-fit: contain;
         }
-
+        
         .card-color-block img {
-    width: 44px;
-    height: 44px;
-    max-width: 44px;
-    max-height: 44px;
-    object-fit: contain;
-}
+            width: 44px;
+            height: 44px;
+        }
 
         .card-body {
             padding: 20px;
@@ -417,8 +418,15 @@
             color: var(--light-slate);
             margin-bottom: 16px;
         }
+
+        @media (max-width: 700px) {
+            .hero-title { font-size: 2rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .top-nav { padding: 0 16px; }
+            .btn-ghost span { display: none; }
+        }
     </style>
-    </head>
+</head>
 <body>
 
     <header class="top-nav">
@@ -452,6 +460,7 @@
         </section>
 
         <nav class="cards-grid">
+            <!-- Офтальмология -->
             <a href="ophthalmo.html" class="specialty-card">
                 <div class="card-color-block ophth">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
@@ -468,6 +477,7 @@
                 </div>
             </a>
 
+            <!-- Дерматология -->
             <a href="dermato.html" class="specialty-card">
                 <div class="card-color-block derma">
                     <img src="assets/derma.svg" alt="Dermatology">
@@ -482,6 +492,7 @@
                 </div>
             </a>
 
+            <!-- Кардиология -->
             <div class="specialty-card locked">
                 <div class="card-color-block cardio">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
@@ -498,9 +509,11 @@
                 </div>
             </div>
 
+
+            <!-- Гастроэнтерология -->
             <div class="specialty-card locked">
                 <div class="card-color-block gastro">
-                    <img src="assets/gastro.svg" alt="Gastroenterology" style="width: 44px; height: 44px;">
+                    <img src="assets/gastro.svg" alt="Gastroenterology">
                 </div>
                 <div class="card-body">
                     <h2 class="card-title" data-i18n="gastro_title">Гастроэнтерология</h2>
@@ -511,6 +524,53 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Гинекология -->
+            <div class="specialty-card locked">
+                <div class="card-color-block gyneco">
+                    <img src="assets/gynec.svg" alt="Gynecology">
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title" data-i18n="gyneco_title">Гинекология</h2>
+                    <p class="card-desc" data-i18n="gyneco_desc">Женская репродуктивная система</p>
+                    <div class="card-footer">
+                        <span class="badge soon" data-i18n="badge_soon">Скоро</span>
+                        <span data-i18n="status_dev">В разработке</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Лучевая диаг. -->
+            <div class="specialty-card locked">
+                <div class="card-color-block radio">
+                    <img src="assets/radio.svg" alt="Radiology">
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title" data-i18n="radio_title">Рентгенология</h2>
+                    <p class="card-desc" data-i18n="radio_desc">Лучевая диагностика</p>
+                    <div class="card-footer">
+                        <span class="badge soon" data-i18n="badge_soon">Скоро</span>
+                        <span data-i18n="status_dev">В разработке</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Неврология -->
+            <div class="specialty-card locked">
+    <div class="card-color-block" style="background: #8b5cf6;">
+        <img src="assets/neuro.svg" alt="Neurology">
+    </div>
+    <div class="card-body">
+        <h2 class="card-title" data-i18n="neuro_title">Неврология</h2>
+        <p class="card-desc" data-i18n="neuro_desc">Нервная система</p>
+        <div class="card-footer">
+            <span class="badge soon" data-i18n="badge_soon">Скоро</span>
+            <span data-i18n="status_dev">В разработке</span>
+        </div>
+    </div>
+</div>
         </nav>
 
         <footer class="site-footer">
@@ -518,7 +578,7 @@
                 <span data-ru="MediQueez © • Сделано с" data-en="MediQueez © • Made with">MediQueez © • Сделано с</span> 
                 <span class="heart">♥</span> 
                 <span data-ru="от" data-en="by">от</span>
-                <a href="docs/about.html" rel="noopener">Х.</a>
+                <a href="docs/about.html" rel="noopener">Х.</a> 
             </p>
             <p class="copyright">Все права защищены</p>
             <a href="docs/legal.html" class="btn-legal" data-i18n="legal">Правовая информация</a>
@@ -536,12 +596,20 @@
                 ophth_title: "Офтальмология",
                 ophth_desc: "2-3 семестры и ГИА",
                 ophth_count: "2500 вопросов",
-                cardio_title: "Кардиология",
+                cardio_title: "Кардиология + Хир.",
                 cardio_desc: "Серд.-сосудистая система",
                 gastro_title: "Гастроэнтерология",
                 gastro_desc: "Пищеварительная система",
                 derma_title: "Дерматология",
                 derma_desc: "Кож.-венер. заболевания",
+                gyneco_title: "Гинекология",
+                gyneco_desc: "Женская репродуктивная система",
+                cardiosurg_title: "Сердечно-сосудистая хирургия",
+                cardiosurg_desc: "Хирургия сердца и сосудов",
+                radio_title: "Рентгенология",
+                radio_desc: "Лучевая диагностика Рентгенология, КТ, МРТ, УЗИ",
+                neuro_title: "Неврология",
+neuro_desc: "Нервная система",
                 badge_active: "Активно",
                 badge_soon: "Скоро",
                 status_dev: "В разработке",
@@ -563,6 +631,14 @@
                 gastro_desc: "Digestive system",
                 derma_title: "Dermatology",
                 derma_desc: "Skin & venereal diseases",
+                gyneco_title: "Gynecology",
+                gyneco_desc: "Female reproductive system",
+                cardiosurg_title: "Cardio Surgery",
+                cardiosurg_desc: "Heart & vascular surgery",
+                radio_title: "Radiology",
+                radio_desc: "Diagnostic imaging",
+                neuro_title: "Neurology",
+neuro_desc: "Nervous system",
                 badge_active: "Active",
                 badge_soon: "Soon",
                 status_dev: "In development",
@@ -615,6 +691,7 @@
             setLang(currentLang);
         });
 
+        /* --- THE PROTECTIO*/
         document.addEventListener('contextmenu', (e) => {
             e.preventDefault();
         });
