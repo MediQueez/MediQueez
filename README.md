@@ -1,7 +1,13 @@
+***06/06/2026:***
+
+- Added Gyneco
+- Added Neuro
+
 
 ***04/06/2026:***
 
-- Added Radiology, Cardiology (with CCX)
+- Added Radiology
+- Added Cardiology (with CCX)
 - Fixed about+legal
 - Fixed Parsing function
 
