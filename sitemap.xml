@@ -6,40 +6,59 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
 
-
 <url>
   <loc>https://mediqueez.ru/</loc>
-  <lastmod>2026-06-05T13:37:17+00:00</lastmod>
+  <lastmod>2026-06-11T11:47:43+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://mediqueez.ru/ophthalmo.html</loc>
-  <lastmod>2026-06-05T13:37:17+00:00</lastmod>
+  <lastmod>2026-06-11T11:47:43+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://mediqueez.ru/dermato.html</loc>
-  <lastmod>2026-06-05T13:37:17+00:00</lastmod>
+  <lastmod>2026-06-11T11:47:44+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://mediqueez.ru/cardio.html</loc>
-  <lastmod>2026-06-05T13:37:17+00:00</lastmod>
+  <lastmod>2026-06-11T11:47:44+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://mediqueez.ru/radio.html</loc>
-  <lastmod>2026-06-05T13:37:17+00:00</lastmod>
+  <lastmod>2026-06-11T11:47:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mediqueez.ru/gyneco.html</loc>
+  <lastmod>2026-06-11T11:47:44+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mediqueez.ru/neuro.html</loc>
+  <lastmod>2026-06-11T11:47:44+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mediqueez.ru/labo.html</loc>
+  <lastmod>2026-06-11T11:47:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://mediqueez.ru/trauma.html</loc>
+  <lastmod>2026-06-11T11:47:43+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://mediqueez.ru/docs/about.html</loc>
-  <lastmod>2026-06-05T13:37:17+00:00</lastmod>
+  <lastmod>2026-06-11T11:47:43+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://mediqueez.ru/docs/legal.html</loc>
-  <lastmod>2026-06-05T13:37:17+00:00</lastmod>
+  <lastmod>2026-06-11T11:47:43+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
