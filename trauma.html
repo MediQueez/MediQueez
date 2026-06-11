@@ -264,6 +264,19 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); c
     background: rgba(255,255,255,0.4);
 }
 
+.announcement-banner a {
+    color: #FFD700;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: all var(--transition-fast);
+}
+
+.announcement-banner a:hover {
+    color: #FFF;
+    text-decoration: none;
+}        
+
         .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; flex-wrap: wrap; gap: 10px; }
         .section-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1.4rem; font-weight: 700; color: var(--text); }
         .section-badge { font-size: 0.78rem; font-weight: 600; padding: 5px 12px; border-radius: 20px; background: var(--accent-bg); color: var(--accent); }
@@ -1433,7 +1446,7 @@ if (quizStats.totalQuizzes >= 4) {
             document.getElementById('user-name-input').addEventListener('keydown',e=>{if(e.key==='Enter')saveUserName();});
             updateGreeting();renderDashboardExtras();checkForSavedQuiz();
             // Here ktb message li bghit of course: bdl message and id everytime, dont forget to activate
-            // showAnnouncement('Message in russian <a href="https://t.me/mediqueezbot" target="_blank" rel="noopener">Telegram</a> <br><span style="font-size:0.8rem;opacity:0.8;">message in english</span>','newyear2026');
+            showAnnouncement('Join our <a href="https://t.me/mediqueez" target="_blank" rel="noopener">Telegram Channel</a> to stay Updated!<br><span style="font-size:0.8rem;opacity:0.8;">Подпишитесь на наш <a href="https://t.me/mediqueez" target="_blank" rel="noopener">Telegram Канал</a> чтобы быть в курсе обновлений!</span>','telchan01');
         });
 
         // les consts lta7t dya les questions
