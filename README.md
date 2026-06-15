@@ -1,3 +1,14 @@
+***15/06/2025:***
+
+- Removed the MAR special event.
+- Added Donat button.
+
+
+***12/06/2026:***
+
+- Added the MAR special event.
+
+
 ***08/06/2026:***
 
 - Added Trauma
