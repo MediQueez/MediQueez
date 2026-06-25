@@ -46,232 +46,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-
-        /* ============================================
-           PORTUGAL OVERLAY
-        ============================================ */
-        #portugal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                135deg,
-                rgba(139, 0, 0, 0.85) 0%,
-                rgba(180, 0, 0, 0.75) 30%,
-                rgba(0, 0, 0, 0.6) 60%,
-                rgba(139, 0, 0, 0.85) 100%
-            );
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 99999;
-            opacity: 0;
-            animation: overlayAppear 0.5s ease forwards,
-                       overlayDisappear 0.7s ease 1.9s forwards;
-            will-change: transform, opacity;
-        }
-
-        #portugal-overlay::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(
-                120deg,
-                transparent 0%,
-                rgba(255, 255, 255, 0.08) 50%,
-                transparent 100%
-            );
-            animation: sheenSweep 2s ease 0.3s forwards;
-        }
-
-        #portugal-overlay::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(
-                circle,
-                rgba(255, 80, 80, 0.3) 0%,
-                transparent 70%
-            );
-            border-radius: 50%;
-            animation: glowPulse 1.2s ease-in-out infinite alternate;
-        }
-
-        .overlay-content {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .flag-row {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .flag-emoji {
-            width: 90px;
-            height: auto;
-            display: inline-block;
-            animation: flagDrop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both,
-                       flagFloat 3s ease-in-out 1s infinite;
-            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.5));
-            will-change: transform, opacity;
-        }
-
-        .lion-left {
-            font-size: 3.8rem;
-            display: inline-block;
-            animation: lionSlideLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both,
-                       lionPulseLeft 1.4s ease-in-out 1.2s infinite alternate;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
-            will-change: transform, opacity;
-        }
-
-        .lion-right {
-            font-size: 3.8rem;
-            display: inline-block;
-            animation: lionSlideRight 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both,
-                       lionPulseRight 1.4s ease-in-out 1.2s infinite alternate;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
-            will-change: transform, opacity;
-        }
-
-        .vamos-text {
-    font-size: 4rem;
-    font-weight: 900;
-    font-family: Georgia, serif;
-    letter-spacing: 12px;
-    text-indent: 12px; /* ← compensates for letter-spacing offset */
-    color: transparent;
-    background: linear-gradient(
-        180deg,
-        #ffffff 0%,
-        #ffcccc 50%,
-        #ff6666 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    filter: drop-shadow(0 4px 16px rgba(255,100,100,0.6));
-    animation: textReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s both,
-               textGlow 1.5s ease-in-out 1.6s infinite alternate;
-    position: relative;
-    will-change: transform, opacity;
-    text-align: center;      /* ← make sure text aligns center */
-    width: 100%;             /* ← take full width so centering works */
-}
-
-        .vamos-text::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #ff6666, transparent);
-            animation: lineGrow 0.6s ease 1.4s forwards;
-        }
-
-        .pt-particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .pt-particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background: rgba(255, 120, 120, 0.6);
-            animation: particleFloat linear infinite;
-            will-change: transform, opacity;
-        }
-
-        .pt-particle:nth-child(1) { left: 10%; animation-duration: 4s;   animation-delay: 0s;    width: 3px; height: 3px; }
-        .pt-particle:nth-child(2) { left: 25%; animation-duration: 5s;   animation-delay: 0.3s;  width: 5px; height: 5px; }
-        .pt-particle:nth-child(3) { left: 40%; animation-duration: 3.5s; animation-delay: 0.1s; }
-        .pt-particle:nth-child(4) { left: 60%; animation-duration: 4.5s; animation-delay: 0.6s;  width: 3px; height: 3px; }
-        .pt-particle:nth-child(5) { left: 78%; animation-duration: 4s;   animation-delay: 0.2s;  width: 6px; height: 6px; }
-        .pt-particle:nth-child(6) { left: 90%; animation-duration: 5.5s; animation-delay: 0.4s;  width: 3px; height: 3px; }
-
-        @keyframes overlayAppear {
-            from { opacity: 0; }
-            to   { opacity: 1; }
-        }
-        @keyframes overlayDisappear {
-            from { opacity: 1; transform: scale(1); }
-            to   { opacity: 0; transform: scale(1.04); }
-        }
-        @keyframes sheenSweep {
-            from { left: -100%; }
-            to   { left: 160%; }
-        }
-        @keyframes glowPulse {
-            from { transform: scale(0.9); opacity: 0.6; }
-            to   { transform: scale(1.2); opacity: 1; }
-        }
-        @keyframes flagDrop {
-            from { opacity: 0; transform: translateY(-60px) scale(0.6); }
-            to   { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        @keyframes flagFloat {
-            0%, 100% { transform: translateY(0px) rotate(-1deg); }
-            50%       { transform: translateY(-10px) rotate(1deg); }
-        }
-        @keyframes lionSlideLeft {
-            from { opacity: 0; transform: translateX(-80px) rotate(-20deg) scale(0.5); }
-            to   { opacity: 1; transform: translateX(0) rotate(0deg) scale(1); }
-        }
-        @keyframes lionSlideRight {
-            from { opacity: 0; transform: translateX(80px) rotate(20deg) scale(0.5); }
-            to   { opacity: 1; transform: translateX(0) rotate(0deg) scale(1); }
-        }
-        @keyframes lionPulseLeft {
-            from { transform: scale(1) rotate(-3deg);    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4)); }
-            to   { transform: scale(1.15) rotate(3deg);  filter: drop-shadow(0 6px 18px rgba(255,80,80,0.5)); }
-        }
-        @keyframes lionPulseRight {
-            from { transform: scale(1.15) rotate(3deg);  filter: drop-shadow(0 6px 18px rgba(255,80,80,0.5)); }
-            to   { transform: scale(1) rotate(-3deg);    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4)); }
-        }
-        @keyframes textReveal {
-            from { opacity: 0; transform: translateY(30px) scale(0.8); letter-spacing: 4px; }
-            to   { opacity: 1; transform: translateY(0) scale(1);      letter-spacing: 12px; }
-        }
-        @keyframes textGlow {
-            from { filter: drop-shadow(0 4px 16px rgba(255,100,100,0.4)); }
-            to   { filter: drop-shadow(0 4px 28px rgba(255,100,100,0.9)); }
-        }
-        @keyframes lineGrow {
-            from { width: 0%; }
-            to   { width: 80%; }
-        }
-        @keyframes particleFloat {
-            0%   { bottom: -10px; opacity: 0; transform: translateX(0); }
-            10%  { opacity: 1; }
-            90%  { opacity: 1; }
-            100% { bottom: 110%; opacity: 0; transform: translateX(30px); }
-        }
-        /* ============================================
-           END PORTUGAL OVERLAY
-        ============================================ */
-
         :root {
             --stormcloud-ink: #282e3e;
             --quizlet-violet: #4255ff;
@@ -336,6 +110,8 @@
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
             transition: background-color 0.3s, color 0.3s;
+
+            
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -550,13 +326,13 @@
             transition: background 0.3s;
         }
 
-        .card-color-block.ophth      { background: var(--quizlet-violet); }
-        .card-color-block.cardio     { background: var(--cardiosurg-red); }
-        .card-color-block.labo       { background: var(--practice-orange); }
-        .card-color-block.derma      { background: var(--flashcard-pink); }
-        .card-color-block.gyneco     { background: var(--gynecology-rose); }
+        .card-color-block.ophth { background: var(--quizlet-violet); }
+        .card-color-block.cardio { background: var(--cardiosurg-red); }
+        .card-color-block.labo { background: var(--practice-orange); }
+        .card-color-block.derma { background: var(--flashcard-pink); }
+        .card-color-block.gyneco { background: var(--gynecology-rose); }
         .card-color-block.cardiosurg { background: var(--cardiosurg-red); }
-        .card-color-block.radio      { background: var(--radiology-teal); }
+        .card-color-block.radio { background: var(--radiology-teal); }
 
         .card-color-block svg {
             width: 44px;
@@ -566,6 +342,7 @@
             stroke-width: 1.8;
             transition: stroke 0.3s;
         }
+        
         .card-color-block img {
             width: 44px;
             height: 44px;
@@ -643,54 +420,14 @@
         }
 
         @media (max-width: 700px) {
-    .vamos-text {
-        font-size: 2.8rem;
-        letter-spacing: 8px;
-        text-indent: 8px; /* match letter-spacing value */
-    }
-
-    .flag-emoji {
-        width: 70px;
-    }
-
-    .lion-left,
-    .lion-right {
-        font-size: 2.8rem;
-    }
-
-    .overlay-content {
-        width: 100%;
-        padding: 0 16px;
-    }
-}
+            .hero-title { font-size: 2rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .top-nav { padding: 0 16px; }
+            .btn-ghost span { display: none; }
+        }
     </style>
 </head>
 <body>
-
-    <!-- ============================================
-         Mor OVERLAY
-    ============================================ -->
-    <div id="portugal-overlay">
-        <div class="pt-particles">
-            <div class="pt-particle"></div>
-            <div class="pt-particle"></div>
-            <div class="pt-particle"></div>
-            <div class="pt-particle"></div>
-            <div class="pt-particle"></div>
-            <div class="pt-particle"></div>
-        </div>
-        <div class="overlay-content">
-            <div class="flag-row">
-                <span class="lion-left">🦁</span>
-                <img src="assets/maroc.svg" class="flag-emoji" alt="Mar Flag">
-                <span class="lion-right">🦁</span>
-            </div>
-            <div class="vamos-text">!ديما مغرب</div>
-        </div>
-    </div>
-    <!-- ============================================
-         END Mor OVERLAY
-    ============================================ -->
 
     <header class="top-nav">
         <div class="nav-brand">M<span style="color: var(--quizlet-violet);">Q</span>//Quiz Platform.</div>
@@ -772,7 +509,8 @@
                 </div>
             </a>
 
-            <!-- Лучевая диаг. -->
+
+                <!-- Лучевая диаг. -->
             <a href="radio.html" class="specialty-card">
                 <div class="card-color-block radio">
                     <img src="assets/radio.svg" alt="Radiology">
@@ -786,6 +524,9 @@
                     </div>
                 </div>
             </a>
+
+
+            
 
             <!-- Гинекология -->
             <a href="gyneco.html" class="specialty-card">
@@ -802,22 +543,27 @@
                 </div>
             </a>
 
-            <!-- Неврология -->
-            <a href="neuro.html" class="specialty-card">
-                <div class="card-color-block" style="background: #8b5cf6;">
-                    <img src="assets/neuro.svg" alt="Neurology">
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title" data-i18n="neuro_title">Неврология</h2>
-                    <p class="card-desc" data-i18n="neuro_desc">Нервная система</p>
-                    <div class="card-footer">
-                        <span class="badge active" data-i18n="badge_active">Скоро</span>
-                        <span class="card-count">1500 вопросов</span>
-                    </div>
-                </div>
-            </a>
 
-            <!-- Лабораторная -->
+            
+
+
+            <!--Неврология -->
+            <a href="neuro.html" class="specialty-card">
+    <div class="card-color-block" style="background: #8b5cf6;">
+        <img src="assets/neuro.svg" alt="Neurology">
+    </div>
+    <div class="card-body">
+        <h2 class="card-title" data-i18n="neuro_title">Неврология</h2>
+        <p class="card-desc" data-i18n="neuro_desc">Нервная система</p>
+        <div class="card-footer">
+            <span class="badge active" data-i18n="badge_active">Скоро</span>
+            <span class="card-count">1500 вопросов</span>
+        </div>
+    </div>
+</a>
+
+
+            <!-- labo -->
             <a href="labo.html" class="specialty-card">
                 <div class="card-color-block" style="background: #d00076">
                     <img src="assets/labo.svg" alt="Labo">
@@ -832,20 +578,51 @@
                 </div>
             </a>
 
+
             <!-- Травматология -->
-            <a href="trauma.html" class="specialty-card">
-                <div class="card-color-block" style="background: #f59e0b;">
-                    <img src="assets/trauma.svg" alt="Traumatology">
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title" data-i18n="trauma_title">Травматология</h2>
-                    <p class="card-desc" data-i18n="trauma_desc">Травмы и ортопедия</p>
-                    <div class="card-footer">
-                        <span class="badge active" data-i18n="badge_active">Скоро</span>
-                        <span class="card-count">1000 вопросов</span>
-                    </div>
-                </div>
-            </a>
+<a href="trauma.html" class="specialty-card">
+    <div class="card-color-block" style="background: #f59e0b;">
+        <img src="assets/trauma.svg" alt="Traumatology">
+    </div>
+    <div class="card-body">
+        <h2 class="card-title" data-i18n="trauma_title">Травматология</h2>
+        <p class="card-desc" data-i18n="trauma_desc">Травмы и ортопедия</p>
+        <div class="card-footer">
+            <span class="badge active" data-i18n="badge_active">Скоро</span>
+            <span class="card-count">1000 вопросов</span>
+        </div>
+    </div>
+</a>
+
+<!-- nephro -->
+<a href="nephro.html" class="specialty-card">
+    <div class="card-color-block" style="background: #65c802;">
+        <img src="assets/nephro.svg" alt="Nephrology">
+    </div>
+    <div class="card-body">
+        <h2 class="card-title" data-i18n="nephro_title">Нефрология</h2>
+        <p class="card-desc" data-i18n="nephro_desc">Заболевания Почек</p>
+        <div class="card-footer">
+            <span class="badge active" data-i18n="badge_active">Скоро</span>
+            <span class="card-count">500 вопросов</span>
+        </div>
+    </div>
+</a>
+
+<!--<a href="gastro.html" class="specialty-card">
+    <div class="card-color-block" style="background: #ce3f06;">
+        <img src="assets/gastro.svg" alt="Gastroenterology">
+    </div>
+    <div class="card-body">
+        <h2 class="card-title" data-i18n="gastro_title">Гастроэнтерология</h2>
+        <p class="card-desc" data-i18n="gastro_desc">Заболевания Пишев</p>
+        <div class="card-footer">
+            <span class="badge active" data-i18n="badge_active">Скоро</span>
+            <span class="card-count">500 вопросов</span>
+        </div>
+    </div>
+</a>-->
+
         </nav>
 
         <footer class="site-footer">
@@ -861,12 +638,6 @@
     </main>
 
     <script>
-        // Remove overlay after 2.6s
-        setTimeout(() => {
-            const overlay = document.getElementById('portugal-overlay');
-            if (overlay) overlay.remove();
-        }, 2600);
-
         const translations = {
             ru: {
                 contact: "Связь",
@@ -875,24 +646,26 @@
                 tagline_bold: "Выберите специальность",
                 tagline_p2: " чтобы начать.",
                 ophth_title: "Офтальмология",
-                ophth_desc: "2-3 семестры и ГИА",
+                ophth_desc: "1-2-3 Семестры + ГИА",
                 ophth_count: "2500 вопросов",
                 cardio_title: "Кардиология + ССХ",
-                cardio_desc: "Серд.-сосудистая система",
+                cardio_desc: "ГИА Кард. + ГИА ССХ",
                 labo_title: "Клини. Лабораторная",
-                labo_desc: "Клиническая Лабораторная Диаг.",
+                labo_desc: "2ой Семестр + ГИА",
                 derma_title: "Дерматология",
-                derma_desc: "Кож.-венер. заболевания",
+                derma_desc: "2ой Семестр + ГИА",
                 gyneco_title: "Гинекология",
-                gyneco_desc: "Женская репродуктивная система",
-                cardiosurg_title: "Сердечно-сосудистая хирургия",
-                cardiosurg_desc: "Хирургия сердца и сосудов",
+                gyneco_desc: "ГИА",
                 radio_title: "Рентгенология",
-                radio_desc: "Лучевая диагностика",
+                radio_desc: "1-2 Семестры + ГИА",
                 neuro_title: "Неврология",
-                neuro_desc: "Нервная система",
+                neuro_desc: "1-2-3й Семестры",
                 trauma_title: "Травматология",
-                trauma_desc: "Травмы и ортопедия",
+                trauma_desc: "ГИА",
+                nephro_title:"Нефрология",
+                nephro_desc:"2ой Семестр",
+                gastro_title:"Гастроэнтерология",
+                gastro_desc:"2ой Семестр",
                 badge_active: "Активно",
                 badge_soon: "Скоро",
                 status_dev: "В разработке",
@@ -906,24 +679,26 @@
                 tagline_bold: "Choose a specialty",
                 tagline_p2: " to begin.",
                 ophth_title: "Ophthalmology",
-                ophth_desc: "Semesters 2-3 & ГИА",
+                ophth_desc: "1-2-3 Semesters & ГИА",
                 ophth_count: "2500 questions",
                 cardio_title: "Cardiology + C-V Surgery",
-                cardio_desc: "Cardiovascular system",
+                cardio_desc: "ГИА Cardio + ГИА CVSurgery",
                 labo_title: "Labo Diag",
-                labo_desc: "Clinical Lab Diagnostics",
+                labo_desc: "2nd Semester & ГИА",
                 derma_title: "Dermatology",
-                derma_desc: "Skin & venereal diseases",
+                derma_desc: "2nd Semester & ГИА",
                 gyneco_title: "Gynecology",
-                gyneco_desc: "Female reproductive system",
-                cardiosurg_title: "Cardio Surgery",
-                cardiosurg_desc: "Heart & vascular surgery",
+                gyneco_desc: "ГИА",
                 radio_title: "Radiology",
-                radio_desc: "Diagnostic imaging",
+                radio_desc: "1-2 Semesters & ГИА",
                 neuro_title: "Neurology",
-                neuro_desc: "Nervous system",
+                neuro_desc: "1-2-3 Semesters",
                 trauma_title: "Traumatology",
-                trauma_desc: "Injuries & orthopedics",
+                trauma_desc: "ГИА",
+                nephro_title:"Nephrology",
+                nephro_desc:"2nd Semester",
+                gastro_title:"Gastroenterology",
+                gastro_desc:"2nd Semester",
                 badge_active: "Active",
                 badge_soon: "Soon",
                 status_dev: "In development",
@@ -971,22 +746,36 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('mediqueez_theme');
-            applyTheme(savedTheme || getSystemTheme());
-            setLang(currentLang);
+    const savedTheme = localStorage.getItem('mediqueez_theme');
+    applyTheme(savedTheme || getSystemTheme());
+    setLang(currentLang);
 
-            window.addEventListener('storage', (e) => {
-                if (e.key === 'mediqueez_theme' && e.newValue) applyTheme(e.newValue);
-                if (e.key === 'mediqueez_lang' && e.newValue) setLang(e.newValue);
-            });
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'mediqueez_theme' && e.newValue) {
+            applyTheme(e.newValue);
+        }
+        if (e.key === 'mediqueez_lang' && e.newValue) {
+            setLang(e.newValue);
+        }
+    });
+});
+
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
         });
-
-        document.addEventListener('contextmenu', (e) => e.preventDefault());
         document.addEventListener('keydown', (e) => {
-            if ((e.ctrlKey || e.metaKey) && e.key === 'c') e.preventDefault();
-            if ((e.ctrlKey || e.metaKey) && e.key === 'x') e.preventDefault();
-            if (e.key === 'F12') e.preventDefault();
-            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I') e.preventDefault();
+            if ((e.ctrlKey || e.metaKey) && e.key === 'c') {
+                e.preventDefault();
+            }
+            if ((e.ctrlKey || e.metaKey) && e.key === 'x') {
+                e.preventDefault();
+            }
+            if (e.key === 'F12') {
+                e.preventDefault();
+            }
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I') {
+                e.preventDefault();
+            }
         });
     </script>
 </body>
